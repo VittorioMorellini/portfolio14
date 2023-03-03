@@ -3,16 +3,9 @@ import { Box } from '@mui/material'
 import Image from 'next/image'
 import { Container } from '../components/container'
 //import { server } from '../config/config'
-import { categoriesAtom } from '../recoil/categoryState'
-import { Category } from '../types/category'
 import ImageLoader from '../utils/imageLoader'
 
-// interface HomeProps {
-//   categories: Category[];
-// }
-
 function Home() {
-  //const [, setCategories] = useRecoilState<Category[]>(categoriesAtom)
   
   return (
     <div>
@@ -30,12 +23,12 @@ function Home() {
               />
           </div>
           <div className="h-full w-full md:m-0">
-              <div className="bg-blue-200">
+              <div className="bg-orange-200">
                 <h1 className="font-black text-2xl md:text-5xl">
                   Software engineer at{" "}
                   <a
                     href="https://sixtema.it"
-                    className="underline hover:text-blue-400"
+                    className="underline hover:text-orange-400"
                     target="_blank"
                     rel="noreferrer"
                   >

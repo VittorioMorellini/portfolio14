@@ -14,7 +14,7 @@ function DesktopNavBar() {
 
     return (
         <>
-            <nav className="py-2.5 bg-gradient-to-tr from-blue-200 to-blue-600 pr-2 pl-2">
+            <nav className="py-2.5 bg-gradient-to-tr from-yellow-200 to-yellow-600 pr-2 pl-2">
                 <div className="w-full flex justify-between items-center">
                     <div className='flex w-auto items-center'>
                         <Link href="/">
