@@ -10,7 +10,7 @@ function Drawer() {
   return (
     <Container
       size="full"
-      className="fixed z-10 min-h-screen bg-gradient-to-b from-blue-200 to-blue-600"
+      className="fixed z-10 min-h-screen bg-gradient-to-b from-yellow-200 to-yellow-600"
     >
       <div className="flex flex-col justify-center items-center w-full h-full pt-24">
         <div className="grid gap-6">

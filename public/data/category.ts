@@ -12,7 +12,7 @@ export const categories: Category[] = [
     {
       id: 2,
       name: 'Personal',
-      url: '/projects',
+      url: '/personal',
       description: 'Personal',
       title: 'Personal projects',
       external: false
@@ -33,30 +33,30 @@ export const categories: Category[] = [
       title: 'Post',
       external: false
     },
-    {
-      id: 5,
-      name: 'Blogs',
-      url: '/blogs',
-      description: 'Blogs',
-      title: 'Blogs',
-      external: false
-    },
     // {
-    //   id: 6,
-    //   name: 'Articles',
-    //   url: '/article',
-    //   description: 'Articles',
-    //   title: 'Articles',
+    //   id: 5,
+    //   name: 'Blogs',
+    //   url: '/blogs',
+    //   description: 'Blogs',
+    //   title: 'Blogs',
     //   external: false
     // },
     {
-      id: 7,
-      name: 'Pokemon',
-      url: '/pokemons',
-      description: 'Pokemon',
-      title: 'Pokemon',
+      id: 6,
+      name: 'Articles',
+      url: '/article',
+      description: 'Articles',
+      title: 'Articles',
       external: false
     },
+    // {
+    //   id: 7,
+    //   name: 'Pokemon',
+    //   url: '/pokemons',
+    //   description: 'Pokemon',
+    //   title: 'Pokemon',
+    //   external: false
+    // },
     {
       id: 8,
       name: 'Resume',

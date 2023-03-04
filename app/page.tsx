@@ -23,12 +23,12 @@ function Home() {
               />
           </div>
           <div className="h-full w-full md:m-0">
-              <div className="bg-orange-200">
+              <div className="bg-yellow-200">
                 <h1 className="font-black text-2xl md:text-5xl">
                   Software engineer at{" "}
                   <a
                     href="https://sixtema.it"
-                    className="underline hover:text-orange-400"
+                    className="underline hover:text-yellow-400"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -72,14 +72,14 @@ function Home() {
               dotnet (C#) on Backend <br />
               <br />
             </p>
-            <div className="relative w-full h-48 md:h-full text-center">
+            <div className="relative w-full h-76 md:h-full text-center">
               <Image
                 loader={ImageLoader}
                 unoptimized
                 src={"/images/Coding.jpg"}
                 alt="Coding is our life"
-                width={300}
-                height={300}
+                width={500}
+                height={300}                
                 />
             </div>
           </div>
