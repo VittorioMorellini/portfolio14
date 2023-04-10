@@ -23,12 +23,12 @@ function Home() {
               />
           </div>
           <div className="h-full w-full md:m-0">
-              <div className="bg-yellow-200">
+              <div className="bg-cyan-200">
                 <h1 className="font-black text-2xl md:text-5xl">
                   Software engineer at{" "}
                   <a
                     href="https://sixtema.it"
-                    className="underline hover:text-yellow-400"
+                    className="underline hover:text-sky-400"
                     target="_blank"
                     rel="noreferrer"
                   >

@@ -32,7 +32,7 @@ export default function RootLayout({
                 </div>
             </div>
           </Box>
-          <footer className="flex bg-gradient-to-tr from-yellow-200 to-yellow-600 items-center justify-center w-full" style={{flex: 1, height: '80px'}}>
+          <footer className="flex bg-gradient-to-tr from-cyan-100 to-cyan-500 items-center justify-center w-full" style={{flex: 1, height: '80px'}}>
             <Footer />
           </footer>
         </body>
