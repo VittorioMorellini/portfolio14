@@ -32,6 +32,7 @@ function Drawer() {
               className="inline-block mr-8"
               target="_blank"
               rel="noopener noreferrer"
+              title={name}
             >
               <Icon className="h-6 w-6 hover:text-blue-400" />
             </a>

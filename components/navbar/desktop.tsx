@@ -20,7 +20,7 @@ function DesktopNavBar() {
                         <Link href="/">
                             <img src='/images/portfolio.png' height={30} alt="Vittorio's portfolio"/>
                         </Link>
-                        <span className="font-bold text-4xl pl-4" style={{flex: '1 0 0%'}}>Vittorio Morellini</span>
+                        <span className="font-bold text-4xl pl-4 flex flex-1">Vittorio Morellini</span>
                     </div>
                     <div className="flex" id="navbar-default">
                         <ul className="flex pt-4">
@@ -47,17 +47,17 @@ function DesktopNavBar() {
                             ))}
                         </ul>
                         <div className="flex px-4 pt-4 justify-between">
-                            <a href="https://twitter.com/VittoMorellini" target="_blank" rel="noreferrer">
+                            <a href="https://twitter.com/VittoMorellini" target="_blank" rel="noopener noreferrer" title='Twitter'>
                                 <Icon className="h-8 w-8 hover:text-gray-400">
                                     <BsTwitter />
                                 </Icon>
                             </a>
-                            <a href="https://www.linkedin.com/in/vittorio-morellini-0325b620" target="_blank" rel="noreferrer">
+                            <a href="https://www.linkedin.com/in/vittorio-morellini-0325b620" target="_blank" rel="noopener noreferrer" title="Linkedin">
                                 <Icon className="h-8 w-8 hover:text-gray-400">
                                     <BsLinkedin />
                                 </Icon>
                             </a>
-                            <a href="https://github.com/vittoriomorellini" target="_blank" rel="noreferrer">
+                            <a href="https://github.com/vittoriomorellini" target="_blank" rel="noopener noreferrer" title='Github'>
                                 <Icon className="h-8 w-8 hover:text-gray-400">
                                     <BsGithub />
                                 </Icon>
