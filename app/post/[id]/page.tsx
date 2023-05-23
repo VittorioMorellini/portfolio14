@@ -1,10 +1,10 @@
 import { Post } from "../../../models/post";
 import { PrismaClient } from '@prisma/client';
 import PostDetail from "@/components/post/detail";
+import { prisma } from "@/db/prisma";
 
 async function getPost(id: number) {
-  console.log('Sono in getPost with id: ' + id)
-  let prisma = new PrismaClient() 
+  //console.log('Sono in getPost with id: ' + id)
   const item = await prisma.post.findFirst({
     where: { Id: id },
   });
@@ -25,7 +25,6 @@ async function getPost(id: number) {
 async function Page({params}: { params: { id: string }}) {
     //for confirm delete
     const post = await getPost(parseInt(params.id))
-    //console.log('sono sul client: ', posts)
     
     return (
       <PostDetail post={post}/>
@@ -43,36 +42,3 @@ export async function generateStaticParams() {
     id: post.Id.toString(),
   }));
 }
-
-// export async function getStaticProps({ params }: { params: {} }) {
-//   // const posts: Post[] = []
-//   console.log('Sono in Static props')
-//   let prisma = new PrismaClient() 
-//   const postsFromDb = await prisma.post.findMany({
-//     //where: { published: true },
-//     // include: {
-//     //   author: {
-//     //     select: { name: true },
-//     //   },
-//     // },
-//   });
-//   const results: Post[] = []
-//   postsFromDb.map((item) => {
-//     let post: Post = {
-//       insertDate: item.InsertDate.toString(),
-//       updateDate: item.InsertDate.toString(),
-//       id: item.Id,
-//       author: item.Author,
-//       title: item.Title,
-//       contentText: item.ContentText
-//     }
-//     results.push(post)
-//   });  
-//   console.log('I have posts', results)
-
-//   return {
-//     props: {
-//       posts: results
-//     }
-//   }
-// }

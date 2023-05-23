@@ -1,36 +1,42 @@
 "use client"
-import { Button, TextareaAutosize } from '@mui/material';
+import { Button, TextField, TextareaAutosize } from '@mui/material';
 import format from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
+//import parseISO from 'date-fns/parseISO';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react';
-//import { useToasts } from 'react-toast-notifications';
-//import { server } from '../../config/config';
+import { useEffect, useState } from 'react';
 import { Post } from '../../models/post';
+import { useToasts } from 'react-toast-notifications';
 
-
-function PostDetail({post}: { post: Post}) {
+interface PostDetailProps {
+    post: Post,
+    onSave?: (id: number) => void
+}
+function PostDetail({post, onSave}: PostDetailProps) {
     const navigate = useRouter()
     console.log('post', post)        
     console.log('I am in detail page post')
     const [text, setText] = useState('');
+    const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [id, setId] = useState(0)
-    //const { addToast } = useToasts()
+    const { addToast } = useToasts()
 
     const showToast = () => {
-        // addToast("Succesfully updated", {
-        //     appearance: 'info',
-        //     autoDismiss: true,
-        // })        
+        addToast("Succesfully updated", {
+            appearance: 'info',
+            autoDismiss: true,
+        })        
     }
 
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log('save post in my blog');
-        const response = fetch(`/api/post/${post.id}`, {
+        console.log('save post in my portfolio: ' + text);
+        fetch(`/api/post/${post.id}`, {
             method: 'POST',
-            body: JSON.stringify({contentText: text, author: author, id: post.id ? post.id : 0, PostDate: parseISO(format(new Date(), 'yyyy-MM-dd HH:mm:ss'))}),
+            body: JSON.stringify({contentText: text, author: author, id: post.id ? post.id : 0, 
+                insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
+                updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
+                title: title}),
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => {
@@ -39,20 +45,20 @@ function PostDetail({post}: { post: Post}) {
                 navigate.push('/post');
             })
         .catch(err => {
-            // addToast(err, {
-            //     appearance: 'error',
-            //     autoDismiss: true,
-            // })  
+            addToast(err, {
+                appearance: 'error',
+                autoDismiss: true,
+            })  
         })        
     }
 
     useEffect(() => {
         // console.log('First load fill the data')
-        // console.log({post})
         if (post) {
             setText(post.contentText ? post.contentText : '')
             setAuthor(post.author ? post.author : '')
             setId(post.id);
+            setTitle(post.title ? post.title : '')
         }
     }, [])
 
@@ -66,6 +72,10 @@ function PostDetail({post}: { post: Post}) {
             <div className="flex flex-col items-center w-4/5">
                 <div className="text-center mb-4">
                     <h3>Post Id: {post?.id}</h3>
+                </div>
+                <div>
+                    <label className='italic' htmlFor='title'>Title</label>
+                    <TextField type="text" className='w-full border-gray-400 border-solid bg-gray-200' id="title" value={title} size='small' placeholder="Title" onChange={(e) => setTitle(e.target.value)}/>
                 </div>
                 <div className='block'>
                     <label className='italic'>Content</label>
@@ -105,39 +115,3 @@ function PostDetail({post}: { post: Post}) {
 }
 
 export default PostDetail;
-
-// export async function generateStaticParams() {
-//     const data = await fetch(`/api/post`)
-//     const posts: Post[] = await data.json();
-//     console.log('Data fetched in server static params api id blog SSR', posts)
-   
-//     return posts.map((post: Post) => ({
-//       id: post.id,
-//     }));
-// }
-
-// export const getStaticProps = async ({params}: { params: { id: number }}) => {
-//     //const idStr: string[] = params.id.split("-");
-//     console.log('id server side', params.id)
-//     const post: Post = {id: params.id, contentText: '', author: '', insertDate: '', updateDate: '', title: '' }
-//     console.log('post server side', JSON.stringify(post))
-//     return {
-//       props: { post }
-//       //revalidate: 3600,
-//     };
-//   };
-  
-
-// export async function getServerSideProps(context: any) {
-//     //console.log('I am in server side props loading SSR')
-//     const data = await fetch(`/api/post/${context.query.id}`)
-//     const result: Post = await data.json();
-//     console.log('Data fetched json() in server side props api id blog SSR', result)
-
-//     return {
-//       props: {
-//         //post: JSON.parse(JSON.stringify(result))
-//         post: result
-//       }
-//     }
-// }

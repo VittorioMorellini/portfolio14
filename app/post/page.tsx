@@ -1,79 +1,32 @@
 
 import { Post } from "../../models/post";
-import { PrismaClient } from '@prisma/client';
 import PostIndex from "@/components/post/index";
 
 async function getPosts() {
-  // const posts: Post[] = []
-  console.log('Sono in getPost')
-  let prisma = new PrismaClient() 
-  const postsFromDb = await prisma.post.findMany({
-    //where: { published: true },
-    // include: {
-    //   author: {
-    //     select: { name: true },
-    //   },
-    // },
-  });
-  const results: Post[] = []
-  postsFromDb.map((item) => {
-    let post: Post = {
-      insertDate: item.InsertDate.toString(),
-      updateDate: item.InsertDate.toString(),
-      id: item.Id,
-      author: item.Author,
-      title: item.Title,
-      contentText: item.ContentText
-    }
-    results.push(post)
-  });  
-  //console.log('I have posts', results)
-
-  return results
+  //console.log('Sono in getAllPost e chiamo la fetch')
+  const res = await fetch(`http://localhost:3000/api/post`);
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+ 
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+  const result = await res.json()
+  const posts = result.results as Post[]
+  //console.log({posts})
+  return posts;
 }
 
 async function Page() {
-    // const navigate = useRouter();
-    //const { addToast } = useToasts()
+    //const navigate = useRouter();
     //for confirm delete
-    const posts: Post[] = await getPosts()
-    //console.log('sono sul client: ', posts)
-    
+    const posts: Post[] = await getPosts() 
+    //console.log({posts})   
     return (
       <PostIndex posts={posts}/>
     );
 }
 export default Page;
 
-// export async function getStaticProps({ params }: { params: {} }) {
-//   // const posts: Post[] = []
-//   console.log('Sono in Static props')
-//   let prisma = new PrismaClient() 
-//   const postsFromDb = await prisma.post.findMany({
-//     //where: { published: true },
-//     // include: {
-//     //   author: {
-//     //     select: { name: true },
-//     //   },
-//     // },
-//   });
-//   const results: Post[] = []
-//   postsFromDb.map((item) => {
-//     let post: Post = {
-//       insertDate: item.InsertDate.toString(),
-//       updateDate: item.InsertDate.toString(),
-//       id: item.Id,
-//       author: item.Author,
-//       title: item.Title,
-//       contentText: item.ContentText
-//     }
-//     results.push(post)
-//   });  
-//   console.log('I have posts', results)
-
-//   return {
-//     props: {
-//       posts: results
-//     }
-//   }
-// }
