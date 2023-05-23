@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Container } from '../components/container'
 //import { server } from '../config/config'
 import ImageLoader from '../utils/imageLoader'
+import Link from 'next/link'
 
 function Home() {
   
@@ -26,14 +27,14 @@ function Home() {
               <div className="bg-cyan-200">
                 <h1 className="font-black text-2xl md:text-5xl">
                   Software engineer at{" "}
-                  <a
+                  <Link
                     href="https://sixtema.it"
                     className="underline hover:text-sky-400"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Sixtema
-                  </a>
+                  </Link>
                   <br />(Modena, Italy)
                 </h1>
                 <h2 className="text-xl md:text-3xl mt-2">

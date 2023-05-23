@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  Id          Int      @id(map: "PK_Post") @default(autoincrement())
+  InsertDate  DateTime @default(now(), map: "DF_Post_InsertDate") @db.DateTime
+  UpdateDate  DateTime @default(now(), map: "DF_Post_UpdateDate") @db.DateTime
+  Title       String?  @db.VarChar(100)
+  ContentText String?  @db.VarChar(8000)
+  Author      String?  @db.VarChar(100)
+}

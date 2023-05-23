@@ -1,7 +1,14 @@
+import { PrismaClient } from "@prisma/client";
 import { Container } from "../../components/container";
 import social from "../../public/data/social";
+import { Post } from "@/models/post";
+import Link from "next/link";
 
-export default function Contacts() {
+export default async function Contacts() {
+  let prisma = new PrismaClient() 
+
+  const posts: Post[] = await prisma.post.findMany();
+  console.log({posts})
   return (
     <Container>
       <h1 className="text-4xl font-black">Let&apos;s connect!</h1>
@@ -17,7 +24,7 @@ export default function Contacts() {
       </p>
       <div className="mt-6">
         {social.map(({ name, url, Icon }) => (
-          <a
+          <Link
             key={name}
             href={url}
             className="inline-block mr-4"
@@ -25,9 +32,30 @@ export default function Contacts() {
             rel="noopener noreferrer"
           >
             <Icon className="h-6 w-6 hover:text-gray-400" />
-          </a>
+          </Link>
         ))}
       </div>
     </Container>
   );
 }
+
+// export async function getStaticProps() {
+//   console.log('Sono in static props lato server')
+//   let prisma = PrismaClient() 
+//   const posts: Post[] = await prisma.post.findMany();
+//     //where: { published: true },
+//     // include: {
+//     //   author: {
+//     //     select: { name: true },
+//     //   },
+//     // },
+//   //});
+//   console.log('I have posts', posts)
+
+//   return {
+//     props: {
+//       posts: posts ? posts : [],
+//       revalidate: 360
+//     }
+//   }
+// }
