@@ -1,10 +1,11 @@
 
+import { getBaseUrlFromEnviroment } from "@/utils/functions";
 import { Post } from "../../models/post";
 import PostIndex from "@/components/post/index";
 
 async function getPosts() {
   //console.log('Sono in getAllPost e chiamo la fetch')
-  const res = await fetch(`http://localhost:3000/api/post`);
+  const res = await fetch(getBaseUrlFromEnviroment() + '/api/post');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
  

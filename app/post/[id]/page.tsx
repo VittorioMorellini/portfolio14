@@ -2,23 +2,22 @@ import { Post } from "../../../models/post";
 import { PrismaClient } from '@prisma/client';
 import PostDetail from "@/components/post/detail";
 import { prisma } from "@/db/prisma";
+import { getBaseUrlFromEnviroment } from "@/utils/functions";
 
 async function getPost(id: number) {
   //console.log('Sono in getPost with id: ' + id)
-  const item = await prisma.post.findFirst({
-    where: { Id: id },
-  });
-  let post: Post = {id: 0, title: '', author: '', insertDate: '', updateDate: '', contentText: ''}
-  if (item) {
-    post = {
-      insertDate: item.InsertDate.toString(),
-      updateDate: item.UpdateDate.toString(),
-      id: item.Id,
-      author: item.Author,
-      title: item.Title,
-      contentText: item.ContentText
-    }
+  const url = getBaseUrlFromEnviroment() + `/api/post/${id}`
+  console.log({url})
+  const res = await fetch(url);
+  //console.log({res})
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data for single post');
   }
+  const result = await res.json()
+  //console.log('result', JSON.stringify(result))
+  const post = result.post as Post
+  //console.log('post in server Page', post)
   return post
 }
 

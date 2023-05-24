@@ -14,7 +14,7 @@ interface PostDetailProps {
 }
 function PostDetail({post, onSave}: PostDetailProps) {
     const navigate = useRouter()
-    console.log('post', post)        
+    console.log('post in client page', post)        
     console.log('I am in detail page post')
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
@@ -53,7 +53,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
     }
 
     useEffect(() => {
-        // console.log('First load fill the data')
+        console.log('First load fill the data')
         if (post) {
             setText(post.contentText ? post.contentText : '')
             setAuthor(post.author ? post.author : '')

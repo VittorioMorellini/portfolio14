@@ -49,3 +49,25 @@ export async function DELETE(request: Request, { params }: {params: { id: string
 
     return NextResponse.json({ deletedPost });
 }
+
+
+export async function GET(request: Request, {params }: {params: { id: string }}) {
+    console.log('GET API for Post with ID: ' + params.id)
+    const item = await prisma.post.findFirst({
+        where: { Id: parseInt(params.id) },
+    });
+    let post: Post = {id: 0, title: '', author: '', insertDate: '', updateDate: '', contentText: ''}
+    //console.log({item})
+    if (item) {
+        post = {
+            insertDate: item.InsertDate.toString(),
+            updateDate: item.UpdateDate.toString(),
+            id: item.Id,
+            author: item.Author,
+            title: item.Title,
+            contentText: item.ContentText
+        }
+    }
+    //console.log({post})
+    return NextResponse.json({ post });   
+}
