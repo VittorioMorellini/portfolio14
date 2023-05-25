@@ -7,8 +7,8 @@ import { getBaseUrlFromEnviroment } from "@/utils/functions";
 async function getPost(id: number) {
   //console.log('Sono in getPost with id: ' + id)
   const url = getBaseUrlFromEnviroment() + `/api/post/${id}`
-  console.log({url})
-  const res = await fetch(url);
+  //console.log({url})
+  const res = await fetch(url, {cache: 'no-cache'});
   //console.log({res})
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

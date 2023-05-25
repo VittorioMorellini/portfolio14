@@ -3,7 +3,7 @@ import { Button, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemTex
 import { Container } from "../container";
 import { Post } from "../../models/post";
 import { PostAddSharp, Delete } from '@mui/icons-material'
-import { useToasts } from "react-toast-notifications";
+//import { useToasts } from "react-toast-notifications";
 import Confirm from "../../utils/ui/confirm";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -12,9 +12,15 @@ interface PostProps {
   posts: Post[];
 }
 
+{/* <ToastProvider autoDismiss={true} 
+autoDismissTimeout={6000} 
+placement="top-center"
+//components={{ Toast: CustomToast }}
+>        */}
+
 function PostIndex({posts}: PostProps) {
-    const navigate = useRouter();
-    const { addToast } = useToasts()
+    const router = useRouter();
+    //const { addToast } = useToasts()
     //for confirm delete
     const [open, setOpen] = useState(false);
     const onCancel = () => { setOpen(false) };
@@ -38,23 +44,26 @@ function PostIndex({posts}: PostProps) {
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => {
-            addToast("Successfully deleted", {
-              appearance: 'info',
-              autoDismiss: true,
-            })  
-            navigate.push('/post');
+            // addToast("Successfully deleted", {
+            //   appearance: 'info',
+            //   autoDismiss: true,
+            // })  
+            alert('Successfully deleted')
+            router.push('/post');
+            router.refresh()
             setOpen(false);
         })
         .catch(err => {
-          addToast(err, {
-            appearance: 'error',
-            autoDismiss: true,
-          })          
+          // addToast(err, {
+          //   appearance: 'error',
+          //   autoDismiss: true,
+          // })          
+          alert('Error ' + err)
           setOpen(false);
         })
     }
     
-    const editPost = (id: number) => navigate.push('/post/' + id)  
+    const editPost = (id: number) => router.push('/post/' + id)
     //Initialize the message that does not change in its lifetime
     message.current = "Do you confirm deleting post?"
     //console.log({posts})
@@ -64,7 +73,7 @@ function PostIndex({posts}: PostProps) {
           <div className="flex flex-col items-center mb-4 md:flex-row">
               <div>
                   <Button variant="outlined" className="w-32" onClick={() => {    
-                      navigate.push('post/0')
+                      router.push('post/0')
                   }}>
                       Add post
                   </Button>

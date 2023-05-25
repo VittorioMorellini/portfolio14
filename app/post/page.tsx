@@ -5,7 +5,7 @@ import PostIndex from "@/components/post/index";
 
 async function getPosts() {
   //console.log('Sono in getAllPost e chiamo la fetch')
-  const res = await fetch(getBaseUrlFromEnviroment() + '/api/post');
+  const res = await fetch(getBaseUrlFromEnviroment() + '/api/post', {cache: 'no-store'});
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
  

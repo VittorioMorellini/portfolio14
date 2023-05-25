@@ -6,27 +6,27 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import { Post } from '../../models/post';
-import { useToasts } from 'react-toast-notifications';
+//import { useToasts } from 'react-toast-notifications';
 
 interface PostDetailProps {
     post: Post,
     onSave?: (id: number) => void
 }
 function PostDetail({post, onSave}: PostDetailProps) {
-    const navigate = useRouter()
+    const router = useRouter()
     console.log('post in client page', post)        
     console.log('I am in detail page post')
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [id, setId] = useState(0)
-    const { addToast } = useToasts()
+    //const { addToast } = useToasts()
 
     const showToast = () => {
-        addToast("Succesfully updated", {
-            appearance: 'info',
-            autoDismiss: true,
-        })        
+        // addToast("Succesfully updated", {
+        //     appearance: 'info',
+        //     autoDismiss: true,
+        // })        
     }
 
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,15 +40,17 @@ function PostDetail({post, onSave}: PostDetailProps) {
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => {
-            showToast()
+            //showToast()
+            alert('Succesfully updated')
             if (post.id === 0)
-                navigate.push('/post');
+                router.push('/post');
             })
         .catch(err => {
-            addToast(err, {
-                appearance: 'error',
-                autoDismiss: true,
-            })  
+            // addToast(err, {
+            //     appearance: 'error',
+            //     autoDismiss: true,
+            // })  
+            alert('Error: ' + err)
         })        
     }
 
@@ -66,8 +68,10 @@ function PostDetail({post, onSave}: PostDetailProps) {
         <>
         <div className='flex relative max-w-full'>
             <div className="w-1/5">
-                <Link href="/post" passHref className='text-black hover:text-blue-500'>Back
-                </Link>
+                {/* <Link href="/post" passHref className='text-black hover:text-blue-500'>Back
+                </Link> */}
+                <Button onClick={() => { router.push('/post'); router.refresh()}} className='text-black hover:text-blue-500'>Back
+                </Button>
             </div>
             <div className="flex flex-col items-center w-4/5">
                 <div className="text-center mb-4">
