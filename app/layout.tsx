@@ -1,12 +1,9 @@
-"use client"
 import Footer from '@/components/footer'
 import { NavBar } from '@/components/navbar'
 import SEO from '@/components/SEO'
-import { Box } from '@mui/material'
-import { useState } from 'react'
-import { RecoilRoot } from 'recoil'
+//import { RecoilRoot } from 'recoil'
 import '../styles/globals.css'
-import { ToastProvider } from 'react-toast-notifications'
+import { Metadata } from 'next'
 
 export const metadata = {
   title: 'eCommerce Next.js 13',
@@ -18,28 +15,30 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [showMobileNav, setShowMobileNav] = useState(false);
+  //const [showMobileNav, setShowMobileNav] = useState(false);
+  let showMobileNav: boolean = false
+  const toggleShowMobileNav = (open: boolean) => {
+    showMobileNav = open
+  }
 
   return (
     <>
-    <RecoilRoot>
       <html lang="en">
         <SEO />
         <body>            
-          <Box className='h-full'>
-            <NavBar show={showMobileNav} onChangeVisibility={setShowMobileNav} />
+          <div className='h-full'>
+            <NavBar show={showMobileNav} />
             <div className="flex pb-8 pt-8 h-[calc(100%-160px)]">
                 <div className="w-full mx-4"> 
                     {children}
                 </div>
             </div>
-          </Box>
-          <footer className="flex bg-gradient-to-tr from-cyan-100 to-cyan-500 items-center justify-center w-full" style={{flex: 1, height: '80px'}}>
+          </div>
+          <footer className="flex bg-gradient-to-tr from-cyan-100 to-cyan-500 items-center justify-center w-full h-20">
             <Footer />
           </footer>
         </body>
       </html>
-    </RecoilRoot>
     </>
   )
 }

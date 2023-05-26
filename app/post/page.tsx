@@ -1,32 +1,41 @@
 
-import { getBaseUrlFromEnviroment } from "@/utils/functions";
+import { getBaseUrlFromEnviroment } from "@/utils/utils";
 import { Post } from "../../models/post";
-import PostIndex from "@/components/post/index";
+import { Container } from "@/components/container";
+import PostItem from "@/components/post/item";
+import Link from "next/link";
+import { getAllPosts } from "@/lib/postSupport";
 
-async function getPosts() {
-  //console.log('Sono in getAllPost e chiamo la fetch')
-  const res = await fetch(getBaseUrlFromEnviroment() + '/api/post', {cache: 'no-store'});
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
- 
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
-  }
-  const result = await res.json()
-  const posts = result.results as Post[]
-  //console.log({posts})
-  return posts;
-}
+//export const revalidate = 0
 
 async function Page() {
-    //const navigate = useRouter();
     //for confirm delete
-    const posts: Post[] = await getPosts() 
+    const posts: Post[] = await getAllPosts() 
     //console.log({posts})   
     return (
-      <PostIndex posts={posts}/>
+      <div className="flex flex-col">
+      <Container>
+        <div className="flex flex-col items-center mb-4 md:flex-row">
+            <div>
+                <Link prefetch={false} href='post/0' passHref className='text-black hover:text-blue-500 w-32'>
+                    Add post
+                </Link>
+            </div>
+            <div className="text-center w-full">
+              <h1 className="text-3xl font-black text-center">Tell me what do you think about my blog and articles</h1>
+            </div>
+        </div>
+        {/*YYYY-MM-DDTHH:mm:ss.sssZ  post.Date.toString() */}
+        {/* format(new Date(parseISO(post.Date).valueOf() + date.getTimezoneOffset() * 60 * 1000), "yyyy-MM-dd'T'HH:mm:ss") */}
+      </Container>
+      <div>
+        <Container>
+          <div className='bg-cyan-300 text-center'>
+            {posts?.map((post: Post, index: number) => <PostItem key={index} post={post} /> )}
+          </div>
+        </Container>
+      </div>
+    </div>
     );
 }
 export default Page;

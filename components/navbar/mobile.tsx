@@ -45,18 +45,18 @@ function Drawer() {
 
 interface MobileNavBarProps {
     show: boolean,
-    onChangeVisibility: any
+    onChangeVisibility?: (open: boolean) => void
 }
 
 export function MobileNavBar({ show, onChangeVisibility }: MobileNavBarProps) {
-  const [open, setOpen] = useState(show);
+  //const [open, setOpen] = useState(show);
 
   useEffect(() => {
-    onChangeVisibility(open);
-  }, [open]);
+    onChangeVisibility && onChangeVisibility(show);
+  }, [show]);
 
   useEffect(() => {
-    setOpen(show);
+    //setOpen(show);
 
     if (show) {
       document.body.classList.add("overflow-hidden");
@@ -73,8 +73,8 @@ export function MobileNavBar({ show, onChangeVisibility }: MobileNavBarProps) {
             <div>
               <Link href="/" className="text-xl font-bold">Vittorio Morellini</Link>
             </div>
-            <button onClick={() => setOpen(!open)}>
-              {open ? (
+            <button onClick={() => onChangeVisibility && onChangeVisibility(!show)}>
+              {show ? (
                 <IoMdClose className="w-7 h-7" />
               ) : (
                 <IoMdMenu className="w-7 h-7" />
@@ -84,7 +84,7 @@ export function MobileNavBar({ show, onChangeVisibility }: MobileNavBarProps) {
         </div>
       </Container>
 
-      {open && <Drawer />}
+      {show && <Drawer />}
     </>
   );
 }

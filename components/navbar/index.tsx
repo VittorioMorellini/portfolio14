@@ -3,7 +3,7 @@ import { MobileNavBar } from "./mobile";
 
 interface NavBarProps {
     show: boolean,
-    onChangeVisibility: any
+    onChangeVisibility?: (open: boolean) => void
 }
 
 export function NavBar({ show, onChangeVisibility }: NavBarProps) {
@@ -13,7 +13,7 @@ export function NavBar({ show, onChangeVisibility }: NavBarProps) {
         <DesktopNavBar />
       </div>
       <div className="block sm:hidden">
-        <MobileNavBar show={show} onChangeVisibility={onChangeVisibility} />
+        <MobileNavBar show={show} />
       </div>
     </>
   );

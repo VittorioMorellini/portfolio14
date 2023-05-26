@@ -68,7 +68,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
         <>
         <div className='flex relative max-w-full'>
             <div className="w-1/5">
-                {/* <Link href="/post" passHref className='text-black hover:text-blue-500'>Back
+                {/* <Link prefetch={false} href="/post" passHref className='text-black hover:text-blue-500'>Back
                 </Link> */}
                 <Button onClick={() => { router.push('/post'); router.refresh()}} className='text-black hover:text-blue-500'>Back
                 </Button>

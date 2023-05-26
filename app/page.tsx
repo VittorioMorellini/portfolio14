@@ -1,9 +1,6 @@
-"use client"
-import { Box } from '@mui/material'
 import Image from 'next/image'
 import { Container } from '../components/container'
-//import { server } from '../config/config'
-import ImageLoader from '../utils/imageLoader'
+//import ImageLoader from '../utils/imageLoader'
 import Link from 'next/link'
 
 function Home() {
@@ -11,11 +8,10 @@ function Home() {
   return (
     <div>
       <Container size="2xl">
-        <Box className='grid gap-10 md:grid-cols-2'>
+        <div className='grid gap-10 md:grid-cols-2'>
           <div className="flex w-full h-full text-center justify-center">
               {/* h-56 md:h-[500px] */}
               <Image
-                loader={ImageLoader}
                 unoptimized
                 src={"/images/vittorio.png"}
                 alt="Vittorio Morellini"
@@ -42,7 +38,7 @@ function Home() {
                 </h2>
               </div>
           </div>
-        </Box>
+        </div>
       </Container>
       <Container size="xl">
           <div className="grid gap-10 grid-cols-1 md:grid-cols-2 mt-0 md:mt-12">
@@ -75,7 +71,6 @@ function Home() {
             </p>
             <div className="relative w-full h-76 md:h-full text-center">
               <Image
-                loader={ImageLoader}
                 unoptimized
                 src={"/images/Coding.jpg"}
                 alt="Coding is our life"
@@ -88,21 +83,5 @@ function Home() {
     </div>
   )
 }
-
-//Dynamic load categories does not work in component, only in page so I have to load from outside
-//Cannot use this function in component
-// export async function getServerSideProps (context: any) {
-//   console.log('Sono in server sides category')
-
-//   const res = await fetch(server +'/api/category')
-//   console.log('Res recuperate server sides category', res)
-//   const results: Category[] = await res.json();
-  
-//   return {
-//     props: {
-//       categories: results
-//     }
-//   }
-// }
 
 export default Home

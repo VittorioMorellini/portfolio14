@@ -50,7 +50,7 @@ function PostIndex({posts}: PostProps) {
             // })  
             alert('Successfully deleted')
             router.push('/post');
-            router.refresh()
+            //router.refresh()
             setOpen(false);
         })
         .catch(err => {

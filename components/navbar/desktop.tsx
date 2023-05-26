@@ -1,16 +1,14 @@
-"use client"
 import React from 'react';
 import { BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs";
-import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Icon } from '@mui/material';
 import { categories } from '@/public/data/category';
-import { useRecoilState } from 'recoil';
-import { titleAtom } from '@/recoil/title';
+import { fabClasses } from '@mui/material';
+//import { useRecoilState } from 'recoil';
+//import { titleAtom } from '@/recoil/title';
 
 function DesktopNavBar() {
-    const [,setTitle] = useRecoilState<string>(titleAtom);
-    const router = useRouter();
+    //const [,setTitle] = useRecoilState<string>(titleAtom);
 
     return (
         <>
@@ -28,7 +26,7 @@ function DesktopNavBar() {
                                 <li key={category.id}>                                    
                                     {category.external ?
                                         <div key={index} className="px-4 hover:underline">                                    
-                                            <Link href={category.url} passHref
+                                            <Link prefetch={false} href={category.url} passHref
                                                     target={"_blank"}
                                                     rel={category.external && "noreferrer"}
                                                 >
@@ -36,32 +34,23 @@ function DesktopNavBar() {
                                             </Link>
                                         </div>
                                     :
-                                    <button className="pr-4 pl-3 text-black hover:underline" onClick={() => {
-                                        setTitle(category.title);
-                                        router.push(category.url)
-                                    }}>
+                                    <Link prefetch={false} className="pr-4 pl-3 text-black hover:underline" href={category.url} passHref rel="noreferrer noopener">
                                         {category.description}
-                                    </button>
+                                    </Link>
                                     }
                                 </li>
                             ))}
                         </ul>
                         <div className="flex px-4 pt-4 justify-between">
-                            <a href="https://twitter.com/VittoMorellini" target="_blank" rel="noopener noreferrer" title='Twitter'>
-                                <Icon className="h-8 w-8 hover:text-gray-400">
-                                    <BsTwitter />
-                                </Icon>
-                            </a>
-                            <a href="https://www.linkedin.com/in/vittorio-morellini-0325b620" target="_blank" rel="noopener noreferrer" title="Linkedin">
-                                <Icon className="h-8 w-8 hover:text-gray-400">
-                                    <BsLinkedin />
-                                </Icon>
-                            </a>
-                            <a href="https://github.com/vittoriomorellini" target="_blank" rel="noopener noreferrer" title='Github'>
-                                <Icon className="h-8 w-8 hover:text-gray-400">
-                                    <BsGithub />
-                                </Icon>
-                            </a>
+                            <Link href="https://twitter.com/VittoMorellini" target="_blank" className="h-8 w-8 hover:text-gray-400" rel="noopener noreferrer" title='Twitter'>
+                                <BsTwitter />
+                            </Link>
+                            <Link className="h-8 w-8 hover:text-gray-400" href="https://www.linkedin.com/in/vittorio-morellini-0325b620" target="_blank" rel="noopener noreferrer" title="Linkedin">
+                                <BsLinkedin />
+                            </Link>
+                            <Link className="h-8 w-8 hover:text-gray-400" href="https://github.com/vittoriomorellini" target="_blank" rel="noopener noreferrer" title='Github'>
+                                <BsGithub />
+                            </Link>
                         </div>
                     </div>
                 </div>
