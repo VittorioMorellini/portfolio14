@@ -7,8 +7,8 @@ import ListItem from "../components/article/ListItem"
 //export const revalidate = 0
 
 export default async function ArticleHome() {
-  let articles: Meta[] | undefined = await getArticlesMeta()
-  console.log({articles})
+  let metas: Meta[] | undefined = await getArticlesMeta()
+  console.log({metas})
   
   return (
     <div className="mx-auto">
@@ -20,10 +20,10 @@ export default async function ArticleHome() {
         </span>
       </p>
       <section className="mt-6 mx-auto max-w-2xl">
-        <h2 className="text-4x font-bold dark:text-black">Blog</h2>
+        <h1 className="text-4x font-bold dark:text-black">Blog List</h1>
         <ul className="w-full">
-            {articles && articles.map(a => (
-                <ListItem key={a.id} article={a} />
+            {metas && metas.map(m => (
+                <ListItem key={m.id} meta={m} />
             ))
             }
         </ul>

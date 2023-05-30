@@ -8,7 +8,7 @@ export const revalidate = 86400
 
 type Props = {
     params: {
-      articleId: string
+      id: string
     }
 }
 
@@ -18,13 +18,13 @@ export async function generateStaticParams() {
     if (!articles) return []
 
     return articles.map((article) => ({
-      articleId: article.id
+      id: article.id
     }))
 }
 
-export async function generateMetadata({ params: { articleId } }: Props) {
+export async function generateMetadata({ params: { id } }: Props) {
 
-    const article = await getArticleByName(`${articleId}.mdx`) //deduped!
+    const article = await getArticleByName(`${id}.mdx`) //deduped!
 
     if (!article) {
         return {
@@ -37,9 +37,9 @@ export async function generateMetadata({ params: { articleId } }: Props) {
     }
 }
 
-export default async function Article({ params: { articleId } }: Props) {
+export default async function Article({ params: { id } }: Props) {
 
-    const article = await getArticleByName(`${articleId}.mdx`) //deduped!
+    const article = await getArticleByName(`${id}.mdx`) //deduped!
 
     if (!article) notFound()
 
@@ -47,7 +47,7 @@ export default async function Article({ params: { articleId } }: Props) {
 
     const pubDate = meta.date ? getFormattedDate(meta.date) : ''
 
-    const tags = meta.tags.map((tag, i) => (
+    const tags = meta?.tags?.map((tag, i) => (
         <Link key={i} href={`/tags/${tag}`}>{tag}</Link>
     ))
 
@@ -67,7 +67,7 @@ export default async function Article({ params: { articleId } }: Props) {
                 </div>
             </section>
             <p className="mb-10">
-                <Link href="/">← Back to home</Link>
+                <Link href="/article">← Back to List</Link>
             </p>
         </>
     )

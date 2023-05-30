@@ -10,7 +10,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
         port: '',
-        pathname: '/gitdagray/test-blogposts/main/images/**',
+        pathname: '/VittorioMorellini/articles/main/images/**',
       },
     ],
   },
