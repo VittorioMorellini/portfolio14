@@ -1,7 +1,5 @@
-import { Container } from "../../components/container";
 import React from "react";
 import { ProjectList } from "../../public/data/projects";
-import ImageLoader from "../../utils/imageLoader";
 import Image from 'next/image';
 import Link from "next/link";
 

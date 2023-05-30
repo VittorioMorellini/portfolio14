@@ -1,5 +1,5 @@
 import { Post } from "@/models/post";
-import { Meta } from "@/types/meta";
+import { Meta } from "@/types";
 import { getBaseUrlFromEnviroment } from "@/utils/utils";
 
 export async function getAllPosts() {

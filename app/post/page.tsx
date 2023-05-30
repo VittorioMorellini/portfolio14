@@ -1,5 +1,4 @@
 
-import { getBaseUrlFromEnviroment } from "@/utils/utils";
 import { Post } from "../../models/post";
 import { Container } from "@/components/container";
 import PostItem from "@/components/post/item";
