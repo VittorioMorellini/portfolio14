@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import 'highlight.js/styles/github-dark.css'
 import getFormattedDate from "@/utils/utils"
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export const revalidate = 86400
 
@@ -59,6 +60,7 @@ export default async function Article({ params: { id } }: Props) {
             </p>
             <article>
                 {content}
+                {/* <MDXRemote source={article} /> */}                
             </article>
             <section>
                 <h3>Related:</h3>

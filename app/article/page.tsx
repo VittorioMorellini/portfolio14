@@ -16,11 +16,11 @@ export default async function ArticleHome() {
       <p className="mt-12 mb-12 text-3xl text-center dark:text-black">
         Hello and Welcome 👋&nbsp;
         <span className="whitespace-nowrap">
-          <span className="font-bold">Articles list</span>
+          <span className="font-bold">Blog List</span>
         </span>
       </p>
       <section className="mt-6 mx-auto max-w-2xl">
-        <h1 className="text-4x font-bold dark:text-black">Blog List</h1>
+        {/* <h1 className="text-4x font-bold dark:text-black"> List</h1> */}
         <ul className="w-full">
             {metas && metas.map(m => (
                 <ListItem key={m.id} meta={m} />
