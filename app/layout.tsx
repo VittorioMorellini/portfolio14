@@ -1,4 +1,4 @@
-import Footer from '@/components/footer'
+import Footer from '@/app/components/footer'
 import { NavBar } from '@/components/navbar'
 import SEO from '@/components/SEO'
 //import { RecoilRoot } from 'recoil'
@@ -6,7 +6,7 @@ import '../styles/globals.css'
 import { Metadata } from 'next'
 
 export const metadata = {
-  title: 'eCommerce Next.js 13',
+  title: 'eCommerce Next.js App router',
   description: 'Developed by Vittorio Morellini',
 }
 

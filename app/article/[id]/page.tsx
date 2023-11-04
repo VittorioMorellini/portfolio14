@@ -4,6 +4,7 @@ import Link from "next/link"
 import 'highlight.js/styles/github-dark.css'
 import getFormattedDate from "@/utils/utils"
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import PageTransition from "@/components/pageTransition"
 
 export const revalidate = 86400
 
@@ -53,14 +54,14 @@ export default async function Article({ params: { id } }: Props) {
     ))
 
     return (
-        <>
+        <PageTransition>  
             <h2 className="text-3xl mt-4 mb-0">{meta.title}</h2>
             <p className="mt-0 text-sm">
                 {pubDate}
             </p>
             <article>
                 {content}
-                {/* <MDXRemote source={article} /> */}                
+                {/* <MDXRemote source={article} /> */}
             </article>
             <section>
                 <h3>Related:</h3>
@@ -71,6 +72,6 @@ export default async function Article({ params: { id } }: Props) {
             <p className="mb-10">
                 <Link href="/article">← Back to List</Link>
             </p>
-        </>
-    )
+        </PageTransition>  
+     )
 }

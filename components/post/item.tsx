@@ -1,6 +1,6 @@
 "use client"
 import { Button, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import { Container } from "../container";
+import { Container } from "../../app/components/container";
 import { Post } from "../../models/post";
 import { PostAddSharp, Delete } from '@mui/icons-material'
 //import { useToasts } from "react-toast-notifications";

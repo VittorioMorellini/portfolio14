@@ -9,23 +9,27 @@ export const ProjectList = [
     name: "Call center",
     image: Proj1,
     skills: "Asp.Net (C#), jQuery, Oracle",
+    description: "Call center web"
   },
   {
     id: 2,
     name: "Mattresses orders",
     image: Proj2,
     skills: "Asp.Net (C#), jQuery, Oracle",
+    description: "Management mattress order and invoice"
   },
   {
     id: 3,
     name: "Personal portfolio",
     image: Proj3,
     skills: "Next.js, Node.js, Tailwindcss",
+    description: "My personal project, post and articles"
   },
   {
     id: 4,
     name: "Printed circuits",
     image: Proj4,
     skills: "Vb6, Pervasive",
+    description: "Management of printed circuits"
   },
 ];

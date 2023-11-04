@@ -6,7 +6,7 @@ export const getBaseUrlFromEnviroment = () => {
     return base_url;
 };
 export default function getFormattedDate(dateString: string): string {
-  console.log({dateString})
+  //console.log({dateString})
   //return new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(new Date(dateString))
   return format(new Date(dateString), 'yyyy-MM-dd')
 }

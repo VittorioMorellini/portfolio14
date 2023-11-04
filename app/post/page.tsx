@@ -1,17 +1,19 @@
 
 import { Post } from "../../models/post";
-import { Container } from "@/components/container";
+import { Container } from "@/app/components/container";
 import PostItem from "@/components/post/item";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/postSupport";
+import PageTransition from "@/components/pageTransition";
 
 //export const revalidate = 0
 
 async function Page() {
-    //for confirm delete
-    const posts: Post[] = await getAllPosts() 
-    //console.log({posts})   
-    return (
+  //for confirm delete
+  const posts: Post[] = await getAllPosts() 
+  //console.log({posts})   
+  return (
+    <PageTransition allowScroll={false}>
       <div className="flex flex-col">
       <Container>
         <div className="flex flex-col items-center mb-4 md:flex-row">
@@ -34,8 +36,9 @@ async function Page() {
           </div>
         </Container>
       </div>
-    </div>
-    );
+      </div>
+    </PageTransition>    
+  );
 }
 export default Page;
 

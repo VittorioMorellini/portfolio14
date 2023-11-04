@@ -1,22 +1,20 @@
 import React from 'react';
 import { BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs";
-//import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { categories } from '@/public/data/category';
-import { fabClasses } from '@mui/material';
+import Image from 'next/image';
 //import { useRecoilState } from 'recoil';
 //import { titleAtom } from '@/recoil/title';
 
 function DesktopNavBar() {
     //const [,setTitle] = useRecoilState<string>(titleAtom);
-
     return (
         <>
             <nav className="py-2.5 bg-gradient-to-tr from-cyan-100 to-cyan-500 pr-2 pl-2">
                 <div className="w-full flex justify-between items-center">
                     <div className='flex w-auto items-center'>
                         <Link href="/">
-                            <img src='/images/portfolio.png' height={30} alt="Vittorio's portfolio"/>
+                            <Image src='/images/portfolio.png' height={30} width={30} alt="Vittorio's portfolio"/>
                         </Link>
                         <span className="font-bold text-4xl pl-4 flex flex-1">Vittorio Morellini</span>
                     </div>

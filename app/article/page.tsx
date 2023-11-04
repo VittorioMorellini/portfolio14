@@ -1,16 +1,18 @@
-import MyProfilePic from "../components/article/MyProfilePic"
+import MyProfilePic from "../../components/client/MyProfilePic"
 //import Articles from "../components/article/Articles"
 import { Meta } from "@/types"
 import { getArticlesMeta } from "@/lib/articleSupport"
 import ListItem from "../components/article/ListItem"
+import PageTransition from "@/components/pageTransition"
 
 //export const revalidate = 0
 
 export default async function ArticleHome() {
   let metas: Meta[] | undefined = await getArticlesMeta()
-  console.log({metas})
+  //console.log({metas})
   
   return (
+    <PageTransition allowScroll={false}>
     <div className="mx-auto">
       <MyProfilePic />
       <p className="mt-12 mb-12 text-3xl text-center dark:text-black">
@@ -29,6 +31,6 @@ export default async function ArticleHome() {
         </ul>
       </section>
     </div>
-    // <Articles />
+    </PageTransition>
   )
 }

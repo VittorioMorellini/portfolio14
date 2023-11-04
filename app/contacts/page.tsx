@@ -1,10 +1,12 @@
-import { Container } from "../../components/container";
+import { Container } from "../components/container";
 import social from "../../public/data/social";
 import Link from "next/link";
+import PageTransition from "@/components/pageTransition";
 
 export default async function Contacts() {
   
   return (
+    <PageTransition allowScroll={false}>
     <Container>
       <h1 className="text-4xl font-black">Let&apos;s connect!</h1>
       <div className="mt-12">
@@ -31,5 +33,6 @@ export default async function Contacts() {
         ))}
       </div>
     </Container>
+    </PageTransition>
   );
 }

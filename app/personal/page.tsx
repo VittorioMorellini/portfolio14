@@ -2,10 +2,11 @@ import React from "react";
 import { ProjectList } from "../../public/data/projects";
 import Image from 'next/image';
 import Link from "next/link";
+import PageTransition from "@/components/pageTransition";
 
 function Personal() {
   return (
-    //* className="w-full h-auto flex justify-center items-center flex-col"
+    <PageTransition allowScroll={false}>
     <div>
       <h1 className="text-3xl text-center font-bold">My Personal Projects</h1>
       <div className="grid md:grid-cols-2 place-items-center">
@@ -25,7 +26,7 @@ function Personal() {
                 />
               </div>  
               <div> 
-                <Link href={`/projects/${project.id}`} className="hover:text-blue-400 block">
+                <Link href={`/personal/${project.id}`} className="hover:text-blue-400 block">
                     <h2 className="text-2xl">{project.name}</h2>
                 </Link>                
               </div>
@@ -35,6 +36,7 @@ function Personal() {
         })}
       </div>
     </div>
+    </PageTransition>  
   );
 }
 

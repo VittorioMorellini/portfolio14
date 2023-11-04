@@ -50,7 +50,6 @@ export async function getArticleByName(filename: string): Promise<BlogPost | und
     })
 
     const id = filename.replace(/\.mdx$/, '')
-
     const blogPostObj: BlogPost = { meta: { id, title: frontmatter.title, date: frontmatter.date, tags: frontmatter.tags }, content }
 
     return blogPostObj
@@ -70,24 +69,24 @@ export async function getArticlesMeta(): Promise<Meta[] | undefined> {
 
     console.log('load mdx from github', res)
     if (!res.ok) return undefined
-    console.log('res is not undefined')
+    //console.log('res is not undefined')
     const repoFileTree: Filetree = await res.json()
     console.log('FILE tree repo', JSON.stringify(repoFileTree))
     const filesArray = repoFileTree.tree.map(obj => obj.path).filter((path: string) => path.endsWith('.mdx'))
-    console.log({filesArray})
+    //console.log({filesArray})
 
     const posts: Meta[] = []
     for (const file of filesArray) {
-        console.log('File name in loop', file)
+        //console.log('File name in loop', file)
         const article = await getArticleByName(file)
         console.log({article})
         if (article) {
             const {meta, content} = article
-            console.log('meta in loop list: ', meta)
+            //console.log('meta in loop list: ', meta)
             posts.push(meta)
         }
     }
-    console.log({posts})
+    //console.log({posts})
     return posts.sort((a,b) => a.date < b.date ? 1 : -1)
 }
 
