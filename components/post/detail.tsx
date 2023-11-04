@@ -2,20 +2,18 @@
 import { Button, TextField, TextareaAutosize } from '@mui/material';
 import format from 'date-fns/format';
 //import parseISO from 'date-fns/parseISO';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import { Post } from '../../models/post';
 //import { useToasts } from 'react-toast-notifications';
 
 interface PostDetailProps {
-    post: Post,
+    post: Post | null,
     onSave?: (id: number) => void
 }
 function PostDetail({post, onSave}: PostDetailProps) {
     const router = useRouter()
-    console.log('post in client page', post)        
-    console.log('I am in detail page post')
+    console.log('Post in client page', post)        
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -31,9 +29,9 @@ function PostDetail({post, onSave}: PostDetailProps) {
 
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log('save post in my portfolio: ' + text);
-        fetch(`/api/post/${post.id}`, {
+        fetch(`/api/post/${post?.id}`, {
             method: 'POST',
-            body: JSON.stringify({contentText: text, author: author, id: post.id ? post.id : 0, 
+            body: JSON.stringify({contentText: text, author: author, id: post?.id ? post.id : 0, 
                 insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                 updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                 title: title}),
@@ -42,7 +40,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
         .then(res => {
             //showToast()
             alert('Succesfully updated')
-            if (post.id === 0)
+            if (post?.id === 0)
                 router.push('/post');
             })
         .catch(err => {
@@ -57,10 +55,10 @@ function PostDetail({post, onSave}: PostDetailProps) {
     useEffect(() => {
         console.log('First load fill the data')
         if (post) {
-            setText(post.contentText ? post.contentText : '')
-            setAuthor(post.author ? post.author : '')
-            setId(post.id);
-            setTitle(post.title ? post.title : '')
+            setText(post?.contentText ? post.contentText : '')
+            setAuthor(post?.author ? post.author : '')
+            setId(post?.id);
+            setTitle(post?.title ? post.title : '')
         }
     }, [])
 

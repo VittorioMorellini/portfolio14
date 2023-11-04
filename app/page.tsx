@@ -1,5 +1,4 @@
 import { Container } from './components/container'
-import Link from 'next/link'
 import Hero from '@/components/client/hero'
 import Code from '@/components/client/code'
 import Presentation from '@/components/client/presentation'

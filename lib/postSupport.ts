@@ -1,37 +1,53 @@
 import { Post } from "@/models/post";
-import { Meta } from "@/types";
-import { getBaseUrlFromEnviroment } from "@/utils/utils";
+import { prisma } from '@/db/prisma';
 
 export async function getAllPosts() {
     //console.log('Sono in getAllPost e chiamo la fetch')
-    const res = await fetch(getBaseUrlFromEnviroment() + '/api/post', {cache: 'no-store'});
+    //const res = await fetch(getBaseUrlFromEnviroment() + '/api/post', {cache: 'no-store'});
+    const postsFromDb = await prisma.post.findMany({
+      where: { 
+          Id: { gt: 0 }
+      }
+    });
+    let results: Post[] = []
+    postsFromDb.map((item) => {
+        let post: Post = {
+        insertDate: item.InsertDate.toString(),
+        updateDate: item.InsertDate.toString(),
+        id: item.Id,
+        author: item.Author,
+        title: item.Title,
+        contentText: item.ContentText
+        }
+        results.push(post)
+    });  
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
    
-    // Recommendation: handle errors
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data');
-    }
-    const result = await res.json()
-    const posts = result.results as Post[]
-    //console.log({posts})
-    return posts;
+    return results;
 }
 
 export async function getPost(id: number) {
     //console.log('Sono in getPost with id: ' + id)
-    const url = getBaseUrlFromEnviroment() + `/api/post/${id}`
+    //const url = `/api/post/${id}`
     //console.log({url})
-    const res = await fetch(url, {cache: 'no-cache'});
-    //console.log({res})
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data for single post');
+    //const res = await fetch(url, {cache: 'no-cache'});
+    const item = await prisma.post.findFirst({
+      where: { 
+          Id: id 
+      }
+    });
+    if (item) {
+      let post: Post = {
+        insertDate: item.InsertDate.toString(),
+        updateDate: item.InsertDate.toString(),
+        id: item.Id,
+        author: item.Author,
+        title: item.Title,
+        contentText: item.ContentText
+        }
+        return post
     }
-    const result = await res.json()
-    const post = result.post as Post
-    //console.log('post in server Page', post)
-    return post
+    return null;
 }
 

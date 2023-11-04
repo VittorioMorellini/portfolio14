@@ -3,14 +3,11 @@ import { Post } from '@/models/post';
 import parseISO from 'date-fns/parseISO';
 import { NextRequest, NextResponse } from 'next/server';
  
-export async function POST(request: Request,{ params }: {params: { id: string }}) {
+export async function POST(request: Request, { params }: { params: { id: string }}) {
     const id = params.id;
-    //const { url, method, body } = request
     console.log('New API app POST post id: ' + id)
-    //console.log('New API app POST post url: ' + url)
-    //console.log("Body from request: " + body)
     const res = await request.json() as Post
-    //console.log("Post from request body-Res: " + JSON.stringify(res))
+    console.log("Post from request body-Res: " + JSON.stringify(res))
     const upsertPost = await prisma.post.upsert({
         where: {
             Id: parseInt(id),
@@ -32,7 +29,6 @@ export async function POST(request: Request,{ params }: {params: { id: string }}
             //Id: res.id
         }
     })
-    //const result: Post = {id: parseInt(id as string), title: '', insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), contentText: '', author: '', updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss') }
     return NextResponse.json({ upsertPost });
 }
 
@@ -46,7 +42,6 @@ export async function DELETE(request: Request, { params }: {params: { id: string
             Id: parseInt(id),
         },
     })
-
     return NextResponse.json({ deletedPost });
 }
 

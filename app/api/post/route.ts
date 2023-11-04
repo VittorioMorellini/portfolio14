@@ -1,27 +1,19 @@
-import { prisma } from '@/db/prisma';
+import { getAllPosts } from '@/lib/postSupport';
 import { Post } from '@/models/post';
 import { NextResponse } from 'next/server';
  
 export async function GET(request: Request) {
 
     console.log('Sono in APP API GET api/post')
-    const postsFromDb = await prisma.post.findMany({
-        where: { 
-            Id: { gt: 0 }
-        }
-    });
-    let results: Post[] = []
-    postsFromDb.map((item) => {
-        let post: Post = {
-        insertDate: item.InsertDate.toString(),
-        updateDate: item.InsertDate.toString(),
-        id: item.Id,
-        author: item.Author,
-        title: item.Title,
-        contentText: item.ContentText
-        }
-        results.push(post)
-    });  
     //console.log('I have posts in number', results.length)
+    let results: Post[] = await getAllPosts()    
+    // Recommendation: handle errors
+    // if (!res.ok) {
+    //   // This will activate the closest `error.js` Error Boundary
+    //   throw new Error('Failed to fetch data');
+    // }
+    //const result = await res.json()
+    //const posts = result.results as Post[]
+    
     return NextResponse.json({results})
 }

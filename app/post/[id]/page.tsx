@@ -4,9 +4,8 @@ import PageTransition from '@/components/pageTransition';
 
 async function Page({params}: { params: { id: string }}) {
     const post = await getPost(parseInt(params.id))
-    
     return (
-      <PageTransition>  
+      <PageTransition>
         <PostDetail post={post}/>
       </PageTransition>  
     );
