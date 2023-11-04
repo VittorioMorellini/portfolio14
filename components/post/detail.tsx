@@ -2,10 +2,11 @@
 import { Button, TextField, TextareaAutosize } from '@mui/material';
 import format from 'date-fns/format';
 //import parseISO from 'date-fns/parseISO';
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import { Post } from '../../models/post';
 //import { useToasts } from 'react-toast-notifications';
+import { addPost } from '@/lib/actions';
 
 interface PostDetailProps {
     post: Post | null,
@@ -29,27 +30,40 @@ function PostDetail({post, onSave}: PostDetailProps) {
 
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log('save post in my portfolio: ' + text);
-        fetch(`/api/post/${post?.id}`, {
-            method: 'POST',
-            body: JSON.stringify({contentText: text, author: author, id: post?.id ? post.id : 0, 
+        console.log({post})
+        if (post && post.id > 0) {
+            fetch(`/api/post/${post?.id}`, {
+                method: 'POST',
+                body: JSON.stringify({contentText: text, author: author, id: post?.id ? post.id : 0, 
+                    insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
+                    updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
+                    title: title}),
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(res => {
+                //showToast()
+                alert('Succesfully updated')
+                if (post?.id === 0)
+                    router.push('/post');
+                })
+            .catch(err => {
+                // addToast(err, {
+                //     appearance: 'error',
+                //     autoDismiss: true,
+                // })  
+                alert('Error: ' + err)
+            })        
+        } else {
+            //calling server Action
+            await addPost({
+                contentText: text, 
+                author: author, 
+                id: 0, 
                 insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                 updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
-                title: title}),
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then(res => {
-            //showToast()
-            alert('Succesfully updated')
-            if (post?.id === 0)
-                router.push('/post');
+                title: title
             })
-        .catch(err => {
-            // addToast(err, {
-            //     appearance: 'error',
-            //     autoDismiss: true,
-            // })  
-            alert('Error: ' + err)
-        })        
+        }
     }
 
     useEffect(() => {
@@ -63,7 +77,6 @@ function PostDetail({post, onSave}: PostDetailProps) {
     }, [])
 
     return (
-        <>
         <div className='flex relative max-w-full'>
             <div className="w-1/5">
                 {/* <Link prefetch={false} href="/post" passHref className='text-black hover:text-blue-500'>Back
@@ -112,7 +125,6 @@ function PostDetail({post, onSave}: PostDetailProps) {
                 </div>
             </div>
         </div>
-        </>    
     )
 }
 

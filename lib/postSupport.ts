@@ -28,7 +28,7 @@ export async function getAllPosts() {
 }
 
 export async function getPost(id: number) {
-    //console.log('Sono in getPost with id: ' + id)
+    console.log('Sono in getPost with id: ' + id)
     //const url = `/api/post/${id}`
     //console.log({url})
     //const res = await fetch(url, {cache: 'no-cache'});
@@ -37,6 +37,7 @@ export async function getPost(id: number) {
           Id: id 
       }
     });
+    console.log({item})
     if (item) {
       let post: Post = {
         insertDate: item.InsertDate.toString(),
@@ -45,8 +46,8 @@ export async function getPost(id: number) {
         author: item.Author,
         title: item.Title,
         contentText: item.ContentText
-        }
-        return post
+      }
+      return post
     }
     return null;
 }
