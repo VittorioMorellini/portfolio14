@@ -4,6 +4,7 @@ import SEO from '@/components/SEO'
 //import { RecoilRoot } from 'recoil'
 import '../styles/globals.css'
 import { Metadata } from 'next'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
   title: 'eCommerce Next.js App router',
@@ -29,6 +30,7 @@ export default function RootLayout({
           <div className='h-full'>
             <NavBar show={showMobileNav} />
             <div className="flex pb-8 pt-8 h-[calc(100%-160px)]">
+                <Toaster position='top-center'/>
                 <div className="w-full mx-4"> 
                     {children}
                 </div>

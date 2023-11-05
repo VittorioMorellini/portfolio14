@@ -5,9 +5,9 @@ import { NextRequest, NextResponse } from 'next/server';
  
 export async function POST(request: Request, { params }: { params: { id: string }}) {
     const id = params.id;
-    console.log('New API app POST post id: ' + id)
+    //console.log('New API app POST post id: ' + id)
     const res = await request.json() as Post
-    console.log("Post from request body-Res: " + JSON.stringify(res))
+    //console.log("Post from request body-Res: " + JSON.stringify(res))
     const upsertPost = await prisma.post.upsert({
         where: {
             Id: parseInt(id),
@@ -32,37 +32,22 @@ export async function POST(request: Request, { params }: { params: { id: string 
     return NextResponse.json({ upsertPost });
 }
 
-export async function DELETE(request: Request, { params }: {params: { id: string }}) {
-    const id = params.id;
-    //const { url, method, body } = request
-    console.log('New API app DELETE post: ' + id)
-    
-    const deletedPost = await prisma.post.delete({
-        where: {
-            Id: parseInt(id),
-        },
-    })
-    return NextResponse.json({ deletedPost });
-}
 
-
-export async function GET(request: Request, {params }: {params: { id: string }}) {
-    console.log('GET API for Post with ID: ' + params.id)
-    const item = await prisma.post.findFirst({
-        where: { Id: parseInt(params.id) },
-    });
-    let post: Post = {id: 0, title: '', author: '', insertDate: '', updateDate: '', contentText: ''}
-    //console.log({item})
-    if (item) {
-        post = {
-            insertDate: item.InsertDate.toString(),
-            updateDate: item.UpdateDate.toString(),
-            id: item.Id,
-            author: item.Author,
-            title: item.Title,
-            contentText: item.ContentText
-        }
-    }
-    //console.log({post})
-    return NextResponse.json({ post });   
-}
+// export async function GET(request: Request, {params }: {params: { id: string }}) {
+//     console.log('GET API for Post with ID: ' + params.id)
+//     const item = await prisma.post.findFirst({
+//         where: { Id: parseInt(params.id) },
+//     });
+//     let post: Post = {id: 0, title: '', author: '', insertDate: '', updateDate: '', contentText: ''}
+//     if (item) {
+//         post = {
+//             insertDate: item.InsertDate.toString(),
+//             updateDate: item.UpdateDate.toString(),
+//             id: item.Id,
+//             author: item.Author,
+//             title: item.Title,
+//             contentText: item.ContentText
+//         }
+//     }
+//     return NextResponse.json({ post });   
+// }

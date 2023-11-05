@@ -20,6 +20,19 @@ export async function addPost(post: Post) {
     revalidatePath('/post')
     redirect('/post')
     // return newPost;
-  } 
+}
+
+export async function deletePost(id: number) {
+  console.log('New server action DELETE post: ' + id)
+  
+  const deletedPost = await prisma.post.delete({
+      where: {
+          Id: id,
+      },
+  })
+  revalidatePath('/post')
+  return deletedPost;
+}
+
   
   

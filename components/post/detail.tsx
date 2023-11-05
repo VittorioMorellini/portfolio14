@@ -1,12 +1,13 @@
 "use client"
-import { Button, TextField, TextareaAutosize } from '@mui/material';
+import { Button, TextField, TextareaAutosize, duration } from '@mui/material';
 import format from 'date-fns/format';
 //import parseISO from 'date-fns/parseISO';
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import { Post } from '../../models/post';
-//import { useToasts } from 'react-toast-notifications';
 import { addPost } from '@/lib/actions';
+import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 interface PostDetailProps {
     post: Post | null,
@@ -14,24 +15,20 @@ interface PostDetailProps {
 }
 function PostDetail({post, onSave}: PostDetailProps) {
     const router = useRouter()
-    console.log('Post in client page', post)        
+    //console.log('Post in client page', post)        
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [id, setId] = useState(0)
-    //const { addToast } = useToasts()
+    const [, setId] = useState(0)
 
     const showToast = () => {
-        // addToast("Succesfully updated", {
-        //     appearance: 'info',
-        //     autoDismiss: true,
-        // })        
+        toast.success("Success updated")        
     }
 
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log('save post in my portfolio: ' + text);
-        console.log({post})
+        //console.log('save post in my portfolio: ' + text);
         if (post && post.id > 0) {
+            //Old pattern with api
             fetch(`/api/post/${post?.id}`, {
                 method: 'POST',
                 body: JSON.stringify({contentText: text, author: author, id: post?.id ? post.id : 0, 
@@ -41,17 +38,13 @@ function PostDetail({post, onSave}: PostDetailProps) {
                 headers: {'Content-Type': 'application/json'}
             })
             .then(res => {
-                //showToast()
-                alert('Succesfully updated')
+                showToast()
+                //alert('Succesfully updated')
                 if (post?.id === 0)
                     router.push('/post');
                 })
             .catch(err => {
-                // addToast(err, {
-                //     appearance: 'error',
-                //     autoDismiss: true,
-                // })  
-                alert('Error: ' + err)
+                toast.error(err)
             })        
         } else {
             //calling server Action
@@ -67,7 +60,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
     }
 
     useEffect(() => {
-        console.log('First load fill the data')
+        //console.log('First load fill the data')
         if (post) {
             setText(post?.contentText ? post.contentText : '')
             setAuthor(post?.author ? post.author : '')
@@ -79,10 +72,8 @@ function PostDetail({post, onSave}: PostDetailProps) {
     return (
         <div className='flex relative max-w-full'>
             <div className="w-1/5">
-                {/* <Link prefetch={false} href="/post" passHref className='text-black hover:text-blue-500'>Back
-                </Link> */}
-                <Button onClick={() => { router.push('/post'); router.refresh()}} className='text-black hover:text-blue-500'>Back
-                </Button>
+                {/* <Link prefetch={false} href="/post" passHref className='text-black hover:text-blue-500'>Back</Link> */}
+                <Button onClick={() => { router.push('/post'); router.refresh()}} className='text-black hover:text-blue-500'>Back</Button>
             </div>
             <div className="flex flex-col items-center w-4/5">
                 <div className="text-center mb-4">

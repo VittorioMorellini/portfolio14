@@ -29,9 +29,6 @@ export async function getAllPosts() {
 
 export async function getPost(id: number) {
     console.log('Sono in getPost with id: ' + id)
-    //const url = `/api/post/${id}`
-    //console.log({url})
-    //const res = await fetch(url, {cache: 'no-cache'});
     const item = await prisma.post.findFirst({
       where: { 
           Id: id 

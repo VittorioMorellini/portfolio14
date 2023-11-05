@@ -26,7 +26,7 @@ function PostIndex({posts}: PostProps) {
     const onCancel = () => { setOpen(false) };
     const onConfirm = useRef<() => void>();
     const message = useRef<string | JSX.Element | undefined>();
-    console.log('sono sul client: ', posts)
+    //console.log('sono sul client: ', posts)
     
     // handler to assign the function on the confirm method
     const confirmDelete = (id: string | number) => (e: React.MouseEvent<HTMLButtonElement>) => {
