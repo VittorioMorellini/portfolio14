@@ -3,8 +3,8 @@ import { BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs";
 import Link from 'next/link';
 import { categories } from '@/public/data/category';
 import Image from 'next/image';
-//import { useRecoilState } from 'recoil';
-//import { titleAtom } from '@/recoil/title';
+import { signOut } from '@/auth';
+import { PowerIcon } from '@heroicons/react/24/outline';
 
 function DesktopNavBar() {
     //const [,setTitle] = useRecoilState<string>(titleAtom);
@@ -39,6 +39,16 @@ function DesktopNavBar() {
                                 </li>
                             ))}
                         </ul>
+                        <form action={async () => {
+                            'use server';
+                            await signOut();
+                        }}
+                        >
+                        <button className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
+                            <PowerIcon className="w-6" />
+                            <div className="hidden md:block">Sign Out</div>
+                        </button>
+                        </form>
                         <div className="flex px-4 pt-4 justify-between">
                             <Link href="https://twitter.com/VittoMorellini" target="_blank" className="h-8 w-8 hover:text-gray-400" rel="noopener noreferrer" title='Twitter'>
                                 <BsTwitter />

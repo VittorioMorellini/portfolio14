@@ -26,7 +26,6 @@ function PostDetail({post, onSave}: PostDetailProps) {
     }
 
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        //console.log('save post in my portfolio: ' + text);
         if (post && post.id > 0) {
             //Old pattern with api
             fetch(`/api/post/${post?.id}`, {
@@ -39,13 +38,9 @@ function PostDetail({post, onSave}: PostDetailProps) {
             })
             .then(res => {
                 showToast()
-                //alert('Succesfully updated')
-                if (post?.id === 0)
-                    router.push('/post');
-                })
-            .catch(err => {
-                toast.error(err)
-            })        
+                if (post?.id === 0) router.push('/post');
+            })
+            .catch(err => {toast.error(err)})        
         } else {
             //calling server Action
             await addPost({

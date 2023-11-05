@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Post {
   Id          Int      @id(map: "PK_Post") @default(autoincrement())
   InsertDate  DateTime @default(now(), map: "DF_Post_InsertDate") @db.DateTime
@@ -14,4 +15,21 @@ model Post {
   Title       String?  @db.VarChar(100)
   ContentText String?  @db.VarChar(8000)
   Author      String?  @db.VarChar(100)
+}
+
+model Principal {
+  Id          Int      @id(map: "PK_Principal") @default(autoincrement())
+  InsertDate  DateTime @default(now(), map: "DF_Principal_InsertDate") @db.DateTime
+  UpdateDate  DateTime @default(now(), map: "DF_Principal_UpdateDate") @db.DateTime
+  Username    String?  @db.VarChar(100)
+  Mail        String?  @db.VarChar(100)
+  Password    String?  @db.VarChar(100)
+  Name        String?  @db.VarChar(100)
+  Surname     String?  @db.VarChar(100)
+  Country     String?  @db.VarChar(10)
+  Cap         String?  @db.VarChar(5)
+  City        String?  @db.VarChar(100)
+  Address     String?  @db.VarChar(100)
+  Number      String?  @db.VarChar(50)
+  Phone       String?  @db.VarChar(100)
 }
