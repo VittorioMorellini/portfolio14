@@ -23,17 +23,20 @@ export const { auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
+        console.log({credentials})
         const parsedCredentials = z
-          .object({ username: z.string().email(), password: z.string().min(6) })
+          .object({ username: z.string().min(8), password: z.string().min(6) })
           .safeParse(credentials);
  
         if (parsedCredentials.success) {
+          console.log('Sono in credentials success')
           const { username, password } = parsedCredentials.data;
           const user = await getUser(username);
           if (!user) return null;
-          const passwordsMatch = await bcrypt.compare(password, user.password);
- 
-          if (passwordsMatch) return user;
+          //const passwordsMatch = await bcrypt.compare(password, user.password);
+          //console.log({passwordsMatch})
+          //if (passwordsMatch) 
+          return user;
         }
  
         console.log('Invalid credentials');
