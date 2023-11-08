@@ -3,11 +3,14 @@ import { BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs";
 import Link from 'next/link';
 import { categories } from '@/public/data/category';
 import Image from 'next/image';
-import { signOut } from '@/auth';
-import { PowerIcon } from '@heroicons/react/24/outline';
+import { signOut, auth } from '@/auth';
+import { PowerIcon, UserIcon } from '@heroicons/react/24/outline';
 
-function DesktopNavBar() {
-    //const [,setTitle] = useRecoilState<string>(titleAtom);
+
+async function DesktopNavBar() {
+    
+    const session = await auth()
+
     return (
         <>
             <nav className="py-2.5 bg-gradient-to-tr from-cyan-100 to-cyan-500 pr-2 pl-2">
@@ -39,27 +42,42 @@ function DesktopNavBar() {
                                 </li>
                             ))}
                         </ul>
+                        <ul className='flex pt-4'>
+                            <li>
+                                <div className="flex px-4 justify-between pt-1">
+                                <Link href="https://twitter.com/VittoMorellini" target="_blank" className="h-8 w-8 hover:text-gray-400" rel="noopener noreferrer" title='Twitter'>
+                                    <BsTwitter />
+                                </Link>
+                                <Link className="h-8 w-8 hover:text-gray-400" href="https://www.linkedin.com/in/vittorio-morellini-0325b620" target="_blank" rel="noopener noreferrer" title="Linkedin">
+                                    <BsLinkedin />
+                                </Link>
+                                <Link className="h-8 w-8 hover:text-gray-400" href="https://github.com/vittoriomorellini" target="_blank" rel="noopener noreferrer" title='Github'>
+                                    <BsGithub />
+                                </Link>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="flex pr-4 pl-3 text-black">
+                                    <UserIcon className="w-6" />
+                                    <div>{session?.user?.name}</div>
+                                </div>
+                            </li>
+                        </ul>
                         <form action={async () => {
                             'use server';
                             await signOut();
                         }}
                         >
-                        <button className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-                            <PowerIcon className="w-6" />
-                            <div className="hidden md:block">Sign Out</div>
-                        </button>
+                            {/* <button className="flex grow items-baseline gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:px-3"> */}
+                            <ul className='flex pt-4'>
+                                <li>
+                                    <button className="flex pr-4 pl-3 text-black hover:underline">
+                                        <PowerIcon className="w-6" />
+                                        <div>Sign Out</div>
+                                    </button>
+                                </li>
+                            </ul>
                         </form>
-                        <div className="flex px-4 pt-4 justify-between">
-                            <Link href="https://twitter.com/VittoMorellini" target="_blank" className="h-8 w-8 hover:text-gray-400" rel="noopener noreferrer" title='Twitter'>
-                                <BsTwitter />
-                            </Link>
-                            <Link className="h-8 w-8 hover:text-gray-400" href="https://www.linkedin.com/in/vittorio-morellini-0325b620" target="_blank" rel="noopener noreferrer" title="Linkedin">
-                                <BsLinkedin />
-                            </Link>
-                            <Link className="h-8 w-8 hover:text-gray-400" href="https://github.com/vittoriomorellini" target="_blank" rel="noopener noreferrer" title='Github'>
-                                <BsGithub />
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </nav>

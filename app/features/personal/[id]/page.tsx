@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { Project } from "../../../types/project";
-import { ProjectList } from "../../../public/data/projects";
+import { Project } from "../../../../types/project";
+import { ProjectList } from "../../../../public/data/projects";
 import Image from 'next/image';
 import PageTransition from "@/components/pageTransition";
 //import { IndexPageRef } from "types/types";

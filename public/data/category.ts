@@ -4,7 +4,7 @@ export const categories: Category[] = [
     {
       id: 1,
       name: 'Home',
-      url: '/',
+      url: '/features',
       description: 'Home',
       title: 'Home',
       external: false
@@ -12,7 +12,7 @@ export const categories: Category[] = [
     {
       id: 2,
       name: 'Personal',
-      url: '/personal',
+      url: '/features/personal',
       description: 'Personal',
       title: 'Personal projects',
       external: false
@@ -28,7 +28,7 @@ export const categories: Category[] = [
     {
       id: 4,
       name: 'Post',
-      url: '/post',
+      url: '/features/post',
       description: 'Post',
       title: 'Post',
       external: false
@@ -36,7 +36,7 @@ export const categories: Category[] = [
     {
       id: 6,
       name: 'Articles',
-      url: '/article',
+      url: '/features/article',
       description: 'Articles',
       title: 'Articles',
       external: false
@@ -60,7 +60,7 @@ export const categories: Category[] = [
     {
       id: 9,
       name: 'Contacts',
-      url: '/contacts',
+      url: '/features/contacts',
       description: 'Contacts',
       title: 'Contacts',
       external: false
