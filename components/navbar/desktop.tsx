@@ -27,9 +27,9 @@ async function DesktopNavBar() {
                                 <li key={category.id}>                                    
                                     {category.external ?
                                         <div key={index} className="px-4 hover:underline">                                    
-                                            <Link prefetch={false} href={category.url} passHref
+                                            <Link href={category.url} passHref
                                                     target={"_blank"}
-                                                    rel={category.external && "noreferrer"}
+                                                    rel="noreferrer noopener"
                                                 >
                                                     {category.name}
                                             </Link>

@@ -17,14 +17,14 @@ export const categories: Category[] = [
       title: 'Personal projects',
       external: false
     },
-    // {
-    //   id: 3,
-    //   name: 'Experience',
-    //   url: '/experience',
-    //   description: 'Experience',
-    //   title: 'Experience',
-    //   external: false
-    // },
+    {
+      id: 3,
+      name: 'Experience',
+      url: '/features/experience',
+      description: 'Experience',
+      title: 'Experience',
+      external: false
+    },
     {
       id: 4,
       name: 'Post',
@@ -41,21 +41,13 @@ export const categories: Category[] = [
       title: 'Articles',
       external: false
     },
-    // {
-    //   id: 7,
-    //   name: 'Pokemon',
-    //   url: '/pokemons',
-    //   description: 'Pokemon',
-    //   title: 'Pokemon',
-    //   external: false
-    // },
     {
       id: 8,
       name: 'Resume',
-      url: '/static/Resume.pdf',
+      url: '/features/resume',
       description: 'Resume',
       title: 'Resume',
-      external: true
+      external: false
     },
     {
       id: 9,

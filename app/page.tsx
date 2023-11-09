@@ -37,7 +37,10 @@ function Home() {
             >
               <span>Sign up</span>
             </Link>
-          </div>        
+          </div> 
+          <div className='flex pt-8 justify-center gap-8'>
+            <Link href={'/static/Resume.pdf'}  target="_blank" className="font-bold text-2xl px-4 hover:underline" rel="noopener noreferrer">My Resume</Link>            
+          </div>       
         </Container>
       </div>
     </PageTransition>  

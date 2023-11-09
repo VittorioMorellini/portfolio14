@@ -27,9 +27,9 @@ export const authConfig = {
       // Send properties to the client, like an access_token and user id from a provider.
       if (session.user && token.accessToken) {
           const at = token.accessToken
-          // session.user.name = at.username
-          // session.user.level = at["sx.lv"]
-          // session.user.role = at["role"]
+          session.user.name = user?.name
+          //session.user.level = at["sx.lv"]
+          //session.user.role = at["role"]
       }
       return session
     },
