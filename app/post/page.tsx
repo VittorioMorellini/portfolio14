@@ -1,5 +1,5 @@
 
-import { Post } from "../../../models/post";
+import { Post } from "../../models/post";
 import { Container } from "@/app/components/container";
 import PostItem from "@/components/post/item";
 import Link from "next/link";
@@ -18,7 +18,7 @@ async function Page() {
       <Container>
         <div className="flex flex-col items-center mb-4 md:flex-row">
             <div>
-                <Link prefetch={false} href='features/post/0' passHref className='text-black hover:text-blue-500 w-32'>
+                <Link prefetch={false} href='/post/0' passHref className='text-black hover:text-blue-500 w-32'>
                     Add post
                 </Link>
             </div>

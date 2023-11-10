@@ -1,5 +1,5 @@
-import { Container } from "../../components/container";
-import social from "../../../public/data/social";
+import { Container } from "../components/container";
+import social from "../../public/data/social";
 import Link from "next/link";
 import PageTransition from "@/components/pageTransition";
 

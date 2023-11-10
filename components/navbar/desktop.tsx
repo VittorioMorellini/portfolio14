@@ -3,14 +3,14 @@ import { BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs";
 import Link from 'next/link';
 import { categories } from '@/public/data/category';
 import Image from 'next/image';
-import { signOut, auth } from '@/auth';
-import { PowerIcon, UserIcon } from '@heroicons/react/24/outline';
-
+import { PowerIcon, UserIcon, IdentificationIcon } from '@heroicons/react/24/outline';
+import { getServerSession } from 'next-auth';
+import { options } from '@/app/api/auth/[...nextauth]/options';
 
 async function DesktopNavBar() {
     
-    const session = await auth()
-
+    const session = await getServerSession(options)
+    console.log({session})
     return (
         <>
             <nav className="py-2.5 bg-gradient-to-tr from-cyan-100 to-cyan-500 pr-2 pl-2">
@@ -56,28 +56,39 @@ async function DesktopNavBar() {
                                 </Link>
                                 </div>
                             </li>
-                            <li>
-                                <div className="flex pr-4 pl-3 text-black">
-                                    <UserIcon className="w-6" />
-                                    <div>{session?.user?.name}</div>
-                                </div>
-                            </li>
                         </ul>
-                        <form action={async () => {
-                            'use server';
-                            await signOut();
-                        }}
-                        >
-                            {/* <button className="flex grow items-baseline gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:px-3"> */}
+                        {session ? (
                             <ul className='flex pt-4'>
                                 <li>
-                                    <button className="flex pr-4 pl-3 text-black hover:underline">
+                                    <div className="flex pr-4 pl-3 text-black">
+                                        <UserIcon className="w-6" />
+                                        <div>{session?.user?.name}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Link href="/api/auth/signout?callbackUrl=/" className="flex pr-4 pl-3 text-black hover:underline">
                                         <PowerIcon className="w-6" />
                                         <div>Sign Out</div>
-                                    </button>
+                                    </Link>
                                 </li>
                             </ul>
-                        </form>
+                        ) : (
+                            <ul className='flex pt-4'>
+                                <li>
+                                    <Link href="/api/auth/signin?callbackUrl=/" className="flex pr-4 pl-3 text-black hover:underline">
+                                        <UserIcon className="w-6" />
+                                        <div>Sign In</div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/api/auth/signin?callbackUrl=/" className="flex pr-4 pl-3 text-black hover:underline">
+                                        <IdentificationIcon className="w-6" />
+                                        <div>Register</div>
+                                    </Link>
+                                </li>
+                            </ul>
+                        )
+                        }
                     </div>
                 </div>
             </nav>

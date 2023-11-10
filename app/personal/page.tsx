@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectList } from "../../../public/data/projects";
+import { ProjectList } from "../../public/data/projects";
 import Image from 'next/image';
 import Link from "next/link";
 import PageTransition from "@/components/pageTransition";
@@ -26,7 +26,7 @@ function Personal() {
                 />
               </div>  
               <div> 
-                <Link href={`/features/personal/${project.id}`} className="hover:text-blue-400 block">
+                <Link href={`/personal/${project.id}`} className="hover:text-blue-400 block">
                     <h2 className="text-2xl">{project.name}</h2>
                 </Link>                
               </div>

@@ -1,11 +1,10 @@
 "use client"
-
-//import { lusitana } from '@/app/ui/fonts';
 import {AtSymbolIcon, KeyIcon, ExclamationCircleIcon,} from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '../../app/components/button';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/lib/actions';
+import { signIn } from 'next-auth/react';
 
 export default function LoginForm(): { action: any; } {
   const [code, action] = useFormState(authenticate, undefined);
@@ -76,8 +75,14 @@ export default function LoginForm(): { action: any; } {
 function LoginButton() {
   const { pending } = useFormStatus();
  
+  const handleSignIn = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(`%chandleSignIn: callbackUrl: ${process.env.NEXT_PUBLIC_BASE_URL}`, 'color: magenta; font-size: 18px')
+    ev.preventDefault()
+    signIn('credentials', { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL })
+    //signIn({ callbackUrl: process.env.NEXT_PUBLIC_BASE_URL })
+  }
   return (
-      <Button className="mt-4 w-full" aria-disabled={pending}>
+      <Button className="mt-4 w-full" aria-disabled={pending} onClick={handleSignIn}>
         Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
       </Button>
   );

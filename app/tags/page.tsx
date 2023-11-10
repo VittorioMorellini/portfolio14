@@ -11,11 +11,11 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-    const articles = await getArticlesMeta() //deduped!
+    const artiles = await getArticlesMeta() //deduped!
 
-    if (!articles) return []
+    if (!artiles) return []
 
-    const tags = new Set(articles.map(post => post.tags).flat())
+    const tags = new Set(artiles.map(article => article.tags).flat())
 
     return Array.from(tags).map((tag) => ({ tag }))
 }
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 export function generateMetadata({ params: { tag } }: Props) {
 
     return {
-        title: `Posts about ${tag}`
+        title: `Articles about ${tag}`
     }
 }
 
@@ -32,13 +32,13 @@ export default async function TagPostList({ params: { tag } }: Props) {
 
     if (!articles) return <p className="mt-10 text-center">Sorry, no posts available.</p>
 
-    const tagPosts = articles.filter(post => post.tags.includes(tag))
+    const tagPosts = articles.filter(article => article.tags.includes(tag))
 
     if (!tagPosts.length) {
         return (
             <div className="text-center">
                 <p className="mt-10">Sorry, no posts for that keyword.</p>
-                <Link href="/features">Back to Home</Link>
+                <Link href="/">Back to Home</Link>
             </div>
         )
     }

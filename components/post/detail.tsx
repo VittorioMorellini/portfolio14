@@ -38,7 +38,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
             })
             .then(res => {
                 showToast()
-                if (post?.id === 0) router.push('/features/post');
+                if (post?.id === 0) router.push('/post');
             })
             .catch(err => {toast.error(err)})        
         } else {
@@ -68,7 +68,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
         <div className='flex relative max-w-full'>
             <div className="w-1/5">
                 {/* <Link prefetch={false} href="/post" passHref className='text-black hover:text-blue-500'>Back</Link> */}
-                <Button onClick={() => { router.push('/features/post'); router.refresh()}} className='text-black hover:text-blue-500'>Back</Button>
+                <Button onClick={() => { router.push('/post'); router.refresh()}} className='text-black hover:text-blue-500'>Back</Button>
             </div>
             <div className="flex flex-col items-center w-4/5">
                 <div className="text-center mb-4">

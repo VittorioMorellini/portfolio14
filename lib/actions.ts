@@ -1,8 +1,9 @@
 'use server'
-import { signIn } from "@/auth";
+//import { signIn } from "next-auth/react";
 import { prisma } from "@/db/prisma";
 import { Post } from "@/models/post";
 import { parseISO } from "date-fns";
+import { signIn } from "next-auth/react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 

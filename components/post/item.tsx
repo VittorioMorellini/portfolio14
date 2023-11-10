@@ -50,7 +50,7 @@ function PostItem({post}: PostItemProps) {
         // })
     }
     
-    const editPost = (id: number) => router.push('/features/post/' + id)
+    const editPost = (id: number) => router.push('/post/' + id)
     message.current = "Do you confirm deleting post?"
     return (
         <div className="flex flex-col">
