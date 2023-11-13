@@ -9,7 +9,7 @@ export default function LoginPage() {
             Enter to the portfolio
           </div>
         </div>
-        <LoginForm />
+        {/* <LoginForm /> */}
       </div>
     </main>
   );

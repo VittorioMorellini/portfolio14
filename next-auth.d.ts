@@ -12,9 +12,9 @@ declare module "next-auth" {
         //accessToken: Record<string, any>,
         //idToken: string,
     }
-    interface User extends DefaultUser {
-        role: string
-    }
+    // interface User extends DefaultUser {
+    //     role: string
+    // }
 }
 declare module "next-auth/jwt" {
     /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */

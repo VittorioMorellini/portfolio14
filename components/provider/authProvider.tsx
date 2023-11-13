@@ -1,4 +1,4 @@
-// provider.tsx
+// Necessary to useSession from client side, we need a provider
 "use client";
 import { SessionProvider } from "next-auth/react";
 

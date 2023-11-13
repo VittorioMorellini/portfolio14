@@ -6,7 +6,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/lib/actions';
 import { signIn } from 'next-auth/react';
 
-export default function LoginForm(): { action: any; } {
+export default function LoginForm() {
   const [code, action] = useFormState(authenticate, undefined);
   
   return (
@@ -79,11 +79,10 @@ function LoginButton() {
     console.log(`%chandleSignIn: callbackUrl: ${process.env.NEXT_PUBLIC_BASE_URL}`, 'color: magenta; font-size: 18px')
     ev.preventDefault()
     signIn('credentials', { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL })
-    //signIn({ callbackUrl: process.env.NEXT_PUBLIC_BASE_URL })
   }
   return (
-      <Button className="mt-4 w-full" aria-disabled={pending} onClick={handleSignIn}>
-        Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-      </Button>
+    <Button className="mt-4 w-full" aria-disabled={pending} onClick={handleSignIn}>
+      Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+    </Button>
   );
 }

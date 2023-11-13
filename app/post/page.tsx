@@ -3,14 +3,14 @@ import { Post } from "../../models/post";
 import { Container } from "@/app/components/container";
 import PostItem from "@/components/post/item";
 import Link from "next/link";
-import { getAllPosts } from "@/lib/postSupport";
+import { getAllPostBySql } from "@/lib/postSupport";
 import PageTransition from "@/components/pageTransition";
 
 //export const revalidate = 0
 
 async function Page() {
   //for confirm delete
-  const posts: Post[] = await getAllPosts() 
+  const posts: Post[] = await getAllPostBySql() 
   //console.log({posts})   
   return (
     <PageTransition allowScroll={false}>

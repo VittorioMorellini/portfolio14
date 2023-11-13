@@ -20,7 +20,6 @@ import PageTransition from '@/components/pageTransition';
 import { motion } from 'framer-motion';
 
 function Experience() {
-  //const ref = React.useRef<HTMLDivElement>(null)
 
   return (
     <PageTransition>
@@ -249,4 +248,4 @@ function Experience() {
   );
 }
 
-export default React.forwardRef(Experience);
+export default Experience;
