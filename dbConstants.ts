@@ -16,4 +16,3 @@ export const dbConfig: sql.config = {
         "encrypt": true
     }
 }
-

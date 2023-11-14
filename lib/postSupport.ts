@@ -1,9 +1,15 @@
 import { Post } from "@/models/post";
 import { prisma } from '@/db/prisma';
 import sql from 'mssql'
-import { dbConfig } from "@/dbConstants";
 
-
+interface PostFromDb {
+  Id: number,
+  InsertDate: Date,
+  UpdateDate: Date,
+  Title: string | null,
+  ContentText: string | null,
+  Author: string | null,
+}
 export async function getAllPosts() {
     //console.log('Sono in getAllPost e chiamo la fetch')
     //const res = await fetch(getBaseUrlFromEnviroment() + '/api/post', {cache: 'no-store'});
@@ -13,7 +19,7 @@ export async function getAllPosts() {
       }
     });
     let results: Post[] = []
-    postsFromDb.map((item) => {
+    postsFromDb.map((item: PostFromDb) => {
         let post: Post = {
         insertDate: item.InsertDate.toString(),
         updateDate: item.InsertDate.toString(),
@@ -30,15 +36,9 @@ export async function getAllPosts() {
 }
 
 export async function getAllPostBySql() {
-  // S-2020-150127
-  const connection: string = 'Server=localhost\\SQLEXPRESS,1433;Initial Catalog=Portfolio;User Id=sa;Password=sapwd;trustServerCertificate=true;Encrypt=true' //process.env.CONNECTION_STRING!
-  //console.log({connection})
-  //sql.connect(dbConfig)
-  sql.connect(connection)
-  //console.log('Ho aperto la connessione')
-  const result = await sql.query('SELECT id, insertDate, updateDate, author, title, contentText From Post')
-  //const result = await sql.query('SELECT * From Post')
-  //console.log({result})
+  //const connection: string = 'Server=S-2020-150127\\SQLEXPRESS,1433;Database=Portfolio;User Id=sa;Password=sapwd;trustServerCertificate=true;encrypt=false' //process.env.CONNECTION_STRING!
+  await sql.connect(process.env.CONNECTION_STRING!)
+  const result = await sql.query('SELECT top 100 id, insertDate, updateDate, author, title, contentText From Post')
   const results = result.recordset as Post[]
   return results
 }
@@ -50,7 +50,7 @@ export async function getPost(id: number) {
           Id: id 
       }
     });
-    console.log({item})
+    //console.log({item})
     if (item) {
       let post: Post = {
         insertDate: item.InsertDate.toString(),
@@ -66,9 +66,7 @@ export async function getPost(id: number) {
 }
 
 export async function getPostBySql(id: number) {
-  //const connection: string = 'Server=localhost\\SQLEXPRESS,1433;Database=Portfolio;User Id=sa;Password=sapwd;TrustServerCertificate=true;Encrypt=true'    //process.env.CONNECTION_STRING!
-  //console.log({connection})
-  sql.connect(dbConfig)
+  await sql.connect(process.env.CONNECTION_STRING!)
 
   const result = await sql.query(`SELECT id, insertDate, updateDate, author, title, contentText From Post WHERE id = ${id}`)
   //const result = await sql.query('SELECT * From Post')
