@@ -44,8 +44,8 @@ function PostDetail({post, onSave}: PostDetailProps) {
         } else {
             //calling server Action
             await addPost({
-                contentText: text, 
-                author: author, 
+                content: text, 
+                redactorId: post?.redactorId!, 
                 id: 0, 
                 insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                 updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
@@ -57,8 +57,8 @@ function PostDetail({post, onSave}: PostDetailProps) {
     useEffect(() => {
         //console.log('First load fill the data')
         if (post) {
-            setText(post?.contentText ? post.contentText : '')
-            setAuthor(post?.author ? post.author : '')
+            setText(post?.content ? post.content : '')
+            setAuthor(post?.redactorId ? 'Autore' : '')
             setId(post?.id);
             setTitle(post?.title ? post.title : '')
         }

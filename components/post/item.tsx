@@ -56,7 +56,7 @@ function PostItem({post}: PostItemProps) {
         <div className="flex flex-col">
             <ListItem key={post.id} className="px-5">
                 <ListItemText>
-                    {post.contentText ? post.contentText?.substring(0, 100) + '...' : ''}
+                    {post.content ? post.content?.substring(0, 100) + '...' : ''}
                 </ListItemText>
                 <ListItemButton onClick={(e: React.MouseEvent<HTMLDivElement>) => editPost(post.id)} className="justify-end">
                     <PostAddSharp />

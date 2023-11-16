@@ -15,8 +15,23 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { dev, isServer, webpack, nextRuntime }) => {
+    config.module.rules.push({
+      test: /\.node$/,
+      use: [
+        {
+          loader: "nextjs-node-loader",
+          options: {
+            outputPath: config.output.path
+          }
+        },
+      ],
+    });
+    return config;
+  },
 }
 module.exports = nextConfig
+ 
 // const withMDX = require('@next/mdx')({
 //   options: {
 //     remarkPlugins: [],

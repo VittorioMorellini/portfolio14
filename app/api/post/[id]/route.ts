@@ -1,4 +1,3 @@
-import { prisma } from '@/db/prisma';
 import { Post } from '@/models/post';
 import parseISO from 'date-fns/parseISO';
 import { NextRequest, NextResponse } from 'next/server';
