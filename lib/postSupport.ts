@@ -35,7 +35,6 @@ interface PostFromDb {
 // }
 
 export async function getAllPostBySql() {
-  //const connection: string = 'Server=S-2020-150127\\SQLEXPRESS,1433;Database=Portfolio;User Id=sa;Password=sapwd;trustServerCertificate=true;encrypt=false' //process.env.CONNECTION_STRING!
   const conn = await sql.promises.open(process.env.CONNECTION_STRING!)
   const result = await conn.promises.query('SELECT top 100 id, insertDate, updateDate, authorId, title, content From Post')
   const results = result.first as Post[]
