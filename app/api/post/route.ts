@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/postSupport';
+import { getAllPostBySql } from '@/lib/postSupport';
 import { Post } from '@/models/post';
 import { NextResponse } from 'next/server';
  
@@ -6,7 +6,7 @@ export async function GET(request: Request) {
 
     console.log('Sono in APP API GET api/post')
     //console.log('I have posts in number', results.length)
-    let results: Post[] = await getAllPosts()    
+    let results: Post[] = await getAllPostBySql()    
     // Recommendation: handle errors
     // if (!res.ok) {
     //   // This will activate the closest `error.js` Error Boundary

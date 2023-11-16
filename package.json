@@ -15,8 +15,6 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.152",
     "@mui/material": "^5.11.11",
-    "@prisma/client": "^5.5.2",
-    "@types/mssql": "^9.1.3",
     "@types/node": "18.14.4",
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
@@ -24,16 +22,16 @@
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "eslint": "8.35.0",
-    "eslint-config-next": "^14.0.2",
+    "eslint-config-next": "13.5.6",
     "framer-motion": "^10.16.4",
+    "gyp": "^0.5.0",
     "highlight.js": "^11.8.0",
-    "mssql": "^10.0.1",
-    "next": "^14.0.2",
+    "msnodesqlv8": "^4.1.1",
+    "next": "13.5.6",
     "next-auth": "4.23.2",
     "next-mdx-remote": "^4.4.1",
     "next-seo": "^5.15.0",
     "next-sitemap": "^4.1.3",
-    "prisma": "^5.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
@@ -50,8 +48,5 @@
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
   }
 }

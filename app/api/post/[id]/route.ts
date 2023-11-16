@@ -8,28 +8,28 @@ export async function POST(request: Request, { params }: { params: { id: string 
     //console.log('New API app POST post id: ' + id)
     const res = await request.json() as Post
     //console.log("Post from request body-Res: " + JSON.stringify(res))
-    const upsertPost = await prisma.post.upsert({
-        where: {
-            Id: parseInt(id),
-        },
-        update: {
-            Author: res.author,
-            ContentText: res.contentText,
-            InsertDate: parseISO(res.insertDate),
-            UpdateDate: parseISO(res.updateDate),
-            Title: res.title,
-            //Id: res.id
-        },
-        create: {
-            Author: res.author,
-            ContentText: res.contentText,
-            InsertDate: parseISO(res.insertDate),
-            UpdateDate: parseISO(res.updateDate),
-            Title: res.title,
-            //Id: res.id
-        }
-    })
-    return NextResponse.json({ upsertPost });
+    // const upsertPost = await prisma.post.upsert({
+    //     where: {
+    //         Id: parseInt(id),
+    //     },
+    //     update: {
+    //         Author: res.author,
+    //         ContentText: res.contentText,
+    //         InsertDate: parseISO(res.insertDate),
+    //         UpdateDate: parseISO(res.updateDate),
+    //         Title: res.title,
+    //         //Id: res.id
+    //     },
+    //     create: {
+    //         Author: res.author,
+    //         ContentText: res.contentText,
+    //         InsertDate: parseISO(res.insertDate),
+    //         UpdateDate: parseISO(res.updateDate),
+    //         Title: res.title,
+    //         //Id: res.id
+    //     }
+    // })
+    return NextResponse.json({ res });
 }
 
 

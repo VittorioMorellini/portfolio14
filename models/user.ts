@@ -6,8 +6,8 @@ export interface User {
     name: string | null;
     email: string | null;
     password: string | null;
-    // phone: string | null;
-    // surname: string | null;
+    phone: string | null;
+    surname: string | null;
     // address?: string;
     // number?: string;
     // cap?: string;
