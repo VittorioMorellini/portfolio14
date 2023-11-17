@@ -10,7 +10,6 @@ export default function Hero() {
         whileHover={{ scale: 1.1 }}
     >
         <Image
-            unoptimized
             src={"/images/vittorio.png"}
             alt="Vittorio Morellini"
             width="300"

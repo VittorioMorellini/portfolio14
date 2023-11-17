@@ -24,7 +24,7 @@ function ProjectItem({ params }: { params: { id: string } }) {
       {item && 
       <div className="bg-transparent w-full h-96 pt-4 mx-auto md:flex md:justify-center">
         <Image
-          unoptimized
+          //unoptimized
           src={item.image}
           alt={item.name}          
           width={550}

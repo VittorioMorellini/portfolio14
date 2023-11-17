@@ -9,7 +9,7 @@ export default function Code() {
             whileHover={{ scale: 1.1 }}
         >
             <Image
-                unoptimized
+                //unoptimized
                 src={"/images/Coding.jpg"}
                 alt="Coding is our life"
                 width={500}

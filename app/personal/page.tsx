@@ -18,7 +18,7 @@ function Personal() {
               <div className="w-full h-52 bg-center bg-no-repeat bg-cover rounded-t-2xl">
                 <Image
                   //loader={ImageLoader}
-                  unoptimized
+                  //unoptimized
                   src={project.image}
                   alt={project.name}
                   width={300}

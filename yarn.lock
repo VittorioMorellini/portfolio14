@@ -1027,9 +1027,9 @@ camelcase-css@^2.0.1:
   integrity sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==
 
 caniuse-lite@^1.0.30001406, caniuse-lite@^1.0.30001538, caniuse-lite@^1.0.30001541:
-  version "1.0.30001562"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001562.tgz#9d16c5fd7e9c592c4cd5e304bc0f75b0008b2759"
-  integrity sha512-kfte3Hym//51EdX4239i+Rmp20EsLIYGdPkERegTgU19hQWCRhsRFGKHTliUlsry53tv17K7n077Kqa0WJU4ng==
+  version "1.0.30001563"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001563.tgz#aa68a64188903e98f36eb9c56e48fba0c1fe2a32"
+  integrity sha512-na2WUmOxnwIZtwnFI2CZ/3er0wdNzU7hN+cPYz/z2ajHThnkWjNBOpEPP4n+4r2WPM847JaMotaJE3bnfzjyKw==
 
 ccount@^2.0.0:
   version "2.0.1"
@@ -1353,9 +1353,9 @@ dom-helpers@^5.0.1:
     csstype "^3.0.2"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.585"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.585.tgz#7b3cb6846bb5cc10a8d5904c351a9b8aaa76ea90"
-  integrity sha512-B4yBlX0azdA3rVMxpYwLQfDpdwOgcnLCkpvSOd68iFmeedo+WYjaBJS3/W58LVD8CB2nf+o7C4K9xz1l09RkWg==
+  version "1.4.587"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.587.tgz#d8b864f21338b60798d447a3d83b90753f701d07"
+  integrity sha512-RyJX0q/zOkAoefZhB9XHghGeATVP0Q3mwA253XD/zj2OeXc+JZB9pCaEv6R578JUYaWM9PRhye0kXvd/V1cQ3Q==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
