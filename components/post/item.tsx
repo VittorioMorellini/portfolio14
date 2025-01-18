@@ -17,8 +17,8 @@ function PostItem({post}: PostItemProps) {
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const onCancel = () => { setOpen(false) };
-    const onConfirm = useRef<() => void>();
-    const message = useRef<string | JSX.Element | undefined>();
+    const onConfirm = useRef<() => void>(() => {});
+    const message = useRef<string | JSX.Element | undefined>(undefined);
     //console.log('sono sul client: ', post)
     
     // handler to assign the function on the confirm method

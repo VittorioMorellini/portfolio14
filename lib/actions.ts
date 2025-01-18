@@ -3,10 +3,12 @@
 //import { prisma } from "@/db/prisma";
 import { Post } from "@/models/post";
 import { parseISO } from "date-fns";
-import sql from "msnodesqlv8";
+//import sql from "msnodesqlv8";
 import { signIn } from "next-auth/react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { dbconfig } from "./config";
+const sql = require("mssql")
 
 export async function addPost(post: Post) {
     console.log('I am in server action')
@@ -33,10 +35,10 @@ export async function deletePost(id: number) {
 //           Id: id,
 //       },
 //   })
-    const conn = await sql.promises.open(process.env.CONNECTION_STRING!)
-    const result = await conn.promises.query(`Delete From Post WHERE Id = ${id}`)
-    const deletedPost = result.first[0] as Post
-    await conn.promises.close()
+    await sql.connect(dbconfig)
+    const result = await sql.query(`Delete From Post WHERE Id = ${id}`)
+    const deletedPost = result.recordset[0] as Post
+    await sql.close()
     
     revalidatePath('/post')
     return deletedPost;

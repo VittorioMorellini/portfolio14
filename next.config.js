@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  output: "standalone",
-  experimental: {
-    serverActions: true
-  },
+  //output: "standalone",
+  // experimental: {
+  //   serverActions: true
+  // },
   reactStrictMode: true,
   images: {
     remotePatterns: [

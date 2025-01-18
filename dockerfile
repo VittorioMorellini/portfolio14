@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM sixnode:18.0.0 AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -23,7 +23,7 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED 1
 RUN yarn build
 EXPOSE 3000
-ENV PORT 3000
+#ENV PORT 3000
 CMD ["node", "server.js"]
 
 # If using npm comment out above and use below instead

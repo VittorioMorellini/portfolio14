@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { Post } from '../../models/post';
 import { addPost } from '@/lib/actions';
 import toast from 'react-hot-toast';
-import Link from 'next/link';
 
 interface PostDetailProps {
     post: Post | null,

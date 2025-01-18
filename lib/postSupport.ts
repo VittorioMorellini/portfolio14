@@ -1,11 +1,16 @@
 import { Post } from "@/models/post";
-import sql from "msnodesqlv8";
+import { dbconfig } from "./config";
+const sql = require('mssql')
 
 export async function getAllPostBySql() {
-  const conn = await sql.promises.open(process.env.CONNECTION_STRING!)
-  const result = await conn.promises.query('SELECT top 10 id, insertDate, updateDate, redactorId, title, content From Post')
-  const results = result.first as Post[]
-  await conn.promises.close()
+  //await sql.connect(process.env.CONNECTION_STRING!)
+  //await sql.connect('driver={tedious};Server=S-2020-150127\\SQLEXPRESS,1433;Database=Portfolio;User Id=sa;Password=sapwd;trustServerCertificate=Yes;encrypted=yes;')
+  await sql.connect(dbconfig)
+  const result = await sql.query('SELECT top 10 id, insertDate, updateDate, redactorId, title, content From Post')
+  console.log({result})
+  const results = result.recordset as Post[]
+  console.log({results})
+  await sql.close()
   return results
 }
 
@@ -32,12 +37,12 @@ export async function getAllPostBySql() {
 // }
 
 export async function getPostBySql(id: number) {
-  const conn = await sql.promises.open(process.env.CONNECTION_STRING!)
-
-  const result = await conn.promises.query(`SELECT id, insertDate, updateDate, redactorId, title, content From Post WHERE id = ${id}`)
+  console.log({id})
+  await sql.connect(dbconfig)
+  const result = await sql.query(`SELECT id, insertDate, updateDate, redactorId, title, content From Post WHERE id = ${id}`)
   //const result = await sql.query('SELECT * From Post')
   console.log({result})
-  const post = result.first[0] as Post
-  await conn.promises.close()
+  const post = result?.recordset[0] as Post
+  await sql.close()
   return post
 }

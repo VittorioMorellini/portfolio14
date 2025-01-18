@@ -1,6 +1,6 @@
 import { User } from "@/models/user";
 import { Principal } from "../models/principal";
-import sql from "msnodesqlv8";
+const sql = require('mssql')
 
 export async function loadPrincipal(username: string) {
     console.log('Sono in loadPrincipal with username: ' + username)

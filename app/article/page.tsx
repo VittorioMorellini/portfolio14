@@ -1,5 +1,4 @@
 import MyProfilePic from "../../components/client/MyProfilePic"
-//import Articles from "../components/article/Articles"
 import { Meta } from "@/types"
 import { getArticlesMeta } from "@/lib/articleSupport"
 import ListItem from "../components/article/ListItem"

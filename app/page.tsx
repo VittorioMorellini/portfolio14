@@ -33,12 +33,11 @@ function Home() {
                 React, Angular, Vue...<br />
                 I am a React.js developer since october 2020, every day I work to improve in the front end enviroment  
                 <br /><br />
-                I am currently working as a <b>Software Engineer</b> at{" "}
-                <b>Sixtema</b> in two main ecosystem: <br/>
-                React.js & Next.js (Typescript) on Frontend<br />
-                dotnet (C#) on Backend <br />
-                <br />
-            </p>
+                I am currently working as a <b>Software Engineer</b>&nbsp; 
+                in two main ecosystem: <br/>
+              <li>React.js & Next.js (Typescript) on Frontend<br /></li>
+              <li>dotnet (C#) on Backend <br /></li>
+            </p>            
             <Code />
           </div>
       </Container>  
