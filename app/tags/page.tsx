@@ -1,34 +1,30 @@
 import { getArticlesMeta } from "@/lib/articleSupport"
-import ListItem from "@/app/components/article/ListItem"
+import ListItem from "@/app/(components)/article/ListItem"
 import Link from "next/link"
 
 export const revalidate = 86400
+// export async function generateStaticParams() {
+//     const artiles = await getArticlesMeta() //deduped!
 
+//     if (!artiles) return []
+
+//     const tags = new Set(artiles.map(article => article.tags).flat())
+
+//     return Array.from(tags).map((tag) => ({ tag }))
+// }
+
+// export function generateMetadata({ params: { tag } }: Props) {
+
+//     return {
+//         title: `Articles about ${tag}`
+//     }
+// }
 type Props = {
-    params: {
-        tag: string
-    }
+    params: Promise<{tag: string}>
 }
-
-export async function generateStaticParams() {
-    const artiles = await getArticlesMeta() //deduped!
-
-    if (!artiles) return []
-
-    const tags = new Set(artiles.map(article => article.tags).flat())
-
-    return Array.from(tags).map((tag) => ({ tag }))
-}
-
-export function generateMetadata({ params: { tag } }: Props) {
-
-    return {
-        title: `Articles about ${tag}`
-    }
-}
-
-export default async function TagPostList({ params: { tag } }: Props) {
-    const articles = await getArticlesMeta() //deduped!
+export default async function TagPostList({ params}: Props) {
+    const tag = (await params).tag
+    const articles = await getArticlesMeta()    //deduped!
 
     if (!articles) return <p className="mt-10 text-center">Sorry, no posts available.</p>
 

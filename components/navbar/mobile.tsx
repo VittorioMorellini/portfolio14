@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
-import { Container } from "../../app/components/container";
+import { Container } from "../../app/(components)/container";
 import social from "../../public/data/social";
 import {categories} from "../../public/data/category";
 

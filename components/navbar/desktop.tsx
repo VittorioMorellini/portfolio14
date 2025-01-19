@@ -87,8 +87,7 @@ async function DesktopNavBar() {
                                     </Link>
                                 </li>
                             </ul>
-                        )
-                        }
+                        )}
                     </div>
                 </div>
             </nav>

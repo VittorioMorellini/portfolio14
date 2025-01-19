@@ -4,8 +4,8 @@ import Confirm from './confirm';
 function useConfirm() {
     const [open, setOpen] = useState(false);
     const onCancel = () => { setOpen(false) };
-    const onConfirm = useRef<() => void>();
-    const message = useRef<string | JSX.Element | undefined>();
+    const onConfirm = useRef<() => void>(() => {});
+    const message = useRef<string | JSX.Element | undefined>('');
 
     return {
         Confirm:

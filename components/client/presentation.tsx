@@ -28,7 +28,8 @@ export default function Presentation() {
                 variants={svgVariants}
                 initial="initial"
                 animate="animate"
-                exit="exit"            
+                exit="exit"    
+                whileHover={{ scale: 1.1 }}        
             >
                 <div className="bg-cyan-200">
                     <h1 className="font-black text-2xl md:text-5xl">

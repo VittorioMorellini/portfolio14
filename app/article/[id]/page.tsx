@@ -9,11 +9,8 @@ import PageTransition from "@/components/pageTransition"
 export const revalidate = 86400
 
 type Props = {
-    params: {
-      id: string
-    }
+    params: Promise<{ id: string }>
 }
-
 export async function generateStaticParams() {
     const articles = await getArticlesMeta() //deduped!
 
@@ -24,23 +21,25 @@ export async function generateStaticParams() {
     }))
 }
 
-export async function generateMetadata({ params: { id } }: Props) {
-
+export async function generateMetadata({ params } : Props) {
+    const id = (await params).id
     const article = await getArticleByName(`${id}.mdx`) //deduped!
-
     if (!article) {
         return {
             title: 'Post Not Found'
         }
     }
-
     return {
         title: article.meta.title,
     }
 }
 
-export default async function Article({ params: { id } }: Props) {
-
+export default async function Article({
+    params,
+  }: {
+    params: Promise<{ id: string }>
+  }) {
+    const id = (await params).id
     const article = await getArticleByName(`${id}.mdx`) //deduped!
 
     if (!article) notFound()

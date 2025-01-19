@@ -5,9 +5,7 @@ import Image from 'next/image'
 
 export default function Code() {
     return (
-        <motion.div className="relative w-full h-76 md:h-full text-center"
-            whileHover={{ scale: 1.1 }}
-        >
+        <motion.div whileHover={{ scale: 1.1 }} className="relative w-full h-76 md:h-full text-center">
             <Image
                 //unoptimized
                 src={"/images/Coding.jpg"}

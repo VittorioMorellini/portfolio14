@@ -12,9 +12,9 @@ interface ProjectItemProps {
     //ref: IndexPageRef
 }
 
-function ProjectItem({ params }: { params: { id: string } }) {
+async function ProjectItem({ params }: { params: Promise<{ id: string }> }) {
   // const router = useRouter();
-  const id = params.id;
+  const id = (await params).id;
   let item: Project | undefined = ProjectList.find(x => x.id.toString() === id)
 
   return (

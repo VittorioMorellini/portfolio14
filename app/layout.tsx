@@ -1,4 +1,4 @@
-import Footer from '@/app/components/footer'
+import Footer from '@/app/(components)/footer'
 import { NavBar } from '@/components/navbar'
 import SEO from '@/components/SEO'
 import '../styles/globals.css'

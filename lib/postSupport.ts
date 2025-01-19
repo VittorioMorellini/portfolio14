@@ -6,7 +6,7 @@ export async function getAllPostBySql() {
   //await sql.connect(process.env.CONNECTION_STRING!)
   //await sql.connect('driver={tedious};Server=S-2020-150127\\SQLEXPRESS,1433;Database=Portfolio;User Id=sa;Password=sapwd;trustServerCertificate=Yes;encrypted=yes;')
   await sql.connect(dbconfig)
-  const result = await sql.query('SELECT top 10 id, insertDate, updateDate, redactorId, title, content From Post')
+  const result = await sql.query('SELECT top 10 id, insertDate, updateDate, redactorId, title, content, author From Post')
   console.log({result})
   const results = result.recordset as Post[]
   console.log({results})
@@ -39,7 +39,7 @@ export async function getAllPostBySql() {
 export async function getPostBySql(id: number) {
   console.log({id})
   await sql.connect(dbconfig)
-  const result = await sql.query(`SELECT id, insertDate, updateDate, redactorId, title, content From Post WHERE id = ${id}`)
+  const result = await sql.query(`SELECT id, insertDate, updateDate, redactorId, title, content, author From Post WHERE id = ${id}`)
   //const result = await sql.query('SELECT * From Post')
   console.log({result})
   const post = result?.recordset[0] as Post

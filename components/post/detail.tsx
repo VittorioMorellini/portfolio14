@@ -19,11 +19,11 @@ function PostDetail({post, onSave}: PostDetailProps) {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [, setId] = useState(0)
+    console.log({post})
 
     const showToast = () => {
         toast.success("Success updated")        
     }
-
     const savePost = async (event: React.MouseEvent<HTMLButtonElement>) => {
         if (post && post.id > 0) {
             //Old pattern with api
@@ -53,17 +53,16 @@ function PostDetail({post, onSave}: PostDetailProps) {
             })
         }
     }
-
     useEffect(() => {
         //console.log('First load fill the data')
         if (post) {
             setText(post?.content ? post.content : '')
-            setAuthor(post?.redactorId ? 'Autore' : '')
+            setAuthor(post?.author ? post?.author : '')
             setId(post?.id);
             setTitle(post?.title ? post.title : '')
         }
     }, [])
-
+    
     return (
         <div className='flex relative max-w-full'>
             <div className="w-1/5">

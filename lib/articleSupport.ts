@@ -4,8 +4,8 @@ import { isConstructorDeclaration } from "typescript"
 import rehypeAutolinkHeadings from 'rehype-autolink-headings/lib'
 import rehypeHighlight from 'rehype-highlight/lib'
 import rehypeSlug from 'rehype-slug'
-import Video from "@/app/components/article/Video"
-import CustomImage from "@/app/components/article/CustomImage"
+import Video from "@/app/(components)/article/Video"
+import CustomImage from "@/app/(components)/article/CustomImage"
 
 type Filetree = {
     "tree": [

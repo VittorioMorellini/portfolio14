@@ -4,10 +4,10 @@ import parseISO from 'date-fns/parseISO';
 import { NextRequest, NextResponse } from 'next/server';
 const sql = require('mssql')
 
-export async function POST(request: Request, { params }: { params: { id: string }}) {
-    const id = params.id;
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }>}) {
+    const id = (await (params)).id;
     
-    console.log('New API app POST post id: ' + id)
+    console.log('API POST by id: ' + id)
     const res = await request.json() as Post
     //console.log("Post from request body-Res: " + JSON.stringify(res))
     let pool = await sql.connect(dbconfig)
@@ -30,26 +30,30 @@ export async function POST(request: Request, { params }: { params: { id: string 
         {
             //do whatever when you get an error
             console.log(error)
+            return NextResponse.json({ error }); 
         })
     }
-    else {
-        //Insert new post
-        pool.request().input('content', sql.NVarChar, res.content)
-            .input('author', sql.NVarChar, res.author)
-            .input('title', sql.NVarChar, res.title)
-            .query(`Insert into Post (content, author, title) values (@content, @author, @title)`
-        )
-        .then(function(result: Post)
-        {
-            //do whatever you want with the results
-            console.log(result)
-        })
-        .catch(function(error: Error)
-        {
-            //do whatever when you get an error
-            console.log(error)
-        })
-    }
+    return NextResponse.json({ res });
+
+    // else {
+        //Insert new post Done by Server actions
+        // pool.request().input('content', sql.NVarChar, res.content)
+        //     .input('author', sql.NVarChar, res.author)
+        //     .input('title', sql.NVarChar, res.title)
+        //     .query(`Insert into Post (content, author, title) values (@content, @author, @title)`
+        // )
+        // .then(function(result: Post)
+        // {
+        //     //do whatever you want with the results
+        //     console.log(result)
+        // })
+        // .catch(function(error: Error)
+        // {
+        //     //do whatever when you get an error
+        //     console.log(error)
+        // })
+    // }
+    
     // const upsertPost = await prisma.post.upsert({
     //     where: {
     //         Id: parseInt(id),
@@ -71,25 +75,4 @@ export async function POST(request: Request, { params }: { params: { id: string 
     //         //Id: res.id
     //     }
     // })
-    return NextResponse.json({ res });
 }
-
-
-// export async function GET(request: Request, {params }: {params: { id: string }}) {
-//     console.log('GET API for Post with ID: ' + params.id)
-//     const item = await prisma.post.findFirst({
-//         where: { Id: parseInt(params.id) },
-//     });
-//     let post: Post = {id: 0, title: '', author: '', insertDate: '', updateDate: '', contentText: ''}
-//     if (item) {
-//         post = {
-//             insertDate: item.InsertDate.toString(),
-//             updateDate: item.UpdateDate.toString(),
-//             id: item.Id,
-//             author: item.Author,
-//             title: item.Title,
-//             contentText: item.ContentText
-//         }
-//     }
-//     return NextResponse.json({ post });   
-// }

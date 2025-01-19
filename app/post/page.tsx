@@ -1,10 +1,12 @@
 
 import { Post } from "../../models/post";
-import { Container } from "@/app/components/container";
+import { Container } from "@/app/(components)/container";
 import PostItem from "@/components/post/item";
 import Link from "next/link";
 import { getAllPostBySql } from "@/lib/postSupport";
 import PageTransition from "@/components/pageTransition";
+import { Add } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 //export const revalidate = 0
 
@@ -18,9 +20,9 @@ async function Page() {
       <Container>
         <div className="flex flex-col items-center mb-4 md:flex-row">
             <div>
-                <Link prefetch={false} href='/post/0' passHref className='text-black hover:text-blue-500 w-32'>
-                    Add post
-                </Link>
+                <IconButton href='/post/0' className='font-black hover:text-blue-500' title="New">
+                    <Add />
+                </IconButton>
             </div>
             <div className="text-center w-full">
               <h1 className="text-3xl font-black text-center">Tell me what do you think about my blog and articles</h1>

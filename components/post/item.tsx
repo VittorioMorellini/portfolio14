@@ -1,7 +1,7 @@
 "use client"
-import { Button, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { IconButton, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import { Post } from "../../models/post";
-import { PostAddSharp, Delete } from '@mui/icons-material'
+import { Edit, Delete } from '@mui/icons-material'
 import Confirm from "../../utils/ui/confirm";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -16,10 +16,8 @@ interface PostItemProps {
 function PostItem({post}: PostItemProps) {
     const router = useRouter();
     const [open, setOpen] = useState(false);
-    const onCancel = () => { setOpen(false) };
     const onConfirm = useRef<() => void>(() => {});
-    const message = useRef<string | JSX.Element | undefined>(undefined);
-    //console.log('sono sul client: ', post)
+    const messageDelete = "Do you confirm deleting post?";
     
     // handler to assign the function on the confirm method
     const confirmDelete = (id: string | number) => (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -30,48 +28,34 @@ function PostItem({post}: PostItemProps) {
 
     //Function that execute fisically the Delete Operation calling server action
     const executeDelete = async (id: string | number) => {
-        console.log('deleteing id: ' + id)
+        //console.log('deleteing id: ' + id)
         await deletePost(id as number)
-        toast.success("Successfully deleted")  
-        
-        // fetch(`/api/post/${id}`, {
-        //     method: 'DELETE',
-        //     //body: Json
-        //     headers: {'Content-Type': 'application/json'}
-        // })
-        // .then(res => {
-        //     //alert('Successfully deleted')
-        //     router.refresh()
-        //     setOpen(false);
-        // })
-        // .catch(err => {
-        //   toast.error(err)
-        //   setOpen(false);
-        // })
+        toast.success("Successfully deleted")          
     }
     
     const editPost = (id: number) => router.push('/post/' + id)
-    message.current = "Do you confirm deleting post?"
     return (
         <div className="flex flex-col">
             <ListItem key={post.id} className="px-5">
-                <ListItemText>
+                <ListItemText style={{width: '20rem'}}>
                     {post.content ? post.content?.substring(0, 100) + '...' : ''}
                 </ListItemText>
-                <ListItemButton onClick={(e: React.MouseEvent<HTMLDivElement>) => editPost(post.id)} className="justify-end">
-                    <PostAddSharp />
-                </ListItemButton> 
                 <ListItemIcon>
-                    <IconButton onClick={confirmDelete(post.id)}>                    
+                    <IconButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => editPost(post.id)} title="Edit">
+                        <Edit />
+                    </IconButton>
+                </ListItemIcon> 
+                <ListItemIcon>
+                    <IconButton onClick={confirmDelete(post.id)} title="Delete">                    
                         <Delete />
                     </IconButton>
                 </ListItemIcon> 
             </ListItem>
             <Confirm
                 open={open}
-                onCancel={onCancel}
+                onCancel={() => setOpen(false)}
                 onConfirm={onConfirm.current!}
-                message={message.current}
+                message={messageDelete}
             />
         </div>
     );

@@ -1,6 +1,6 @@
 "use client"
 import { Button, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import { Container } from "../../app/components/container";
+import { Container } from "../../app/(components)/container";
 import { Post } from "../../models/post";
 import { PostAddSharp, Delete } from '@mui/icons-material'
 //import { useToasts } from "react-toast-notifications";
@@ -24,8 +24,8 @@ function PostIndex({posts}: PostProps) {
     //for confirm delete
     const [open, setOpen] = useState(false);
     const onCancel = () => { setOpen(false) };
-    const onConfirm = useRef<() => void>();
-    const message = useRef<string | JSX.Element | undefined>();
+    const onConfirm = useRef<() => void>(() => {});
+    const message = "Do you confirm deleting post?";
     //console.log('sono sul client: ', posts)
     
     // handler to assign the function on the confirm method
@@ -65,7 +65,6 @@ function PostIndex({posts}: PostProps) {
     
     const editPost = (id: number) => router.push('/post/' + id)
     //Initialize the message that does not change in its lifetime
-    message.current = "Do you confirm deleting post?"
     //console.log({posts})
     return (
         <div className="flex flex-col">
@@ -112,7 +111,7 @@ function PostIndex({posts}: PostProps) {
               open={open}
               onCancel={onCancel}
               onConfirm={onConfirm.current!}
-              message={message.current}
+              message={message}
           />
         </div>  
     );

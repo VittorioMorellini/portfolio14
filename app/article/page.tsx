@@ -1,14 +1,14 @@
 import MyProfilePic from "../../components/client/MyProfilePic"
 import { Meta } from "@/types"
 import { getArticlesMeta } from "@/lib/articleSupport"
-import ListItem from "../components/article/ListItem"
+import ListItem from "../(components)/article/ListItem"
 import PageTransition from "@/components/pageTransition"
 
 //export const revalidate = 0
 
 export default async function ArticleHome() {
   let metas: Meta[] | undefined = await getArticlesMeta()
-  //console.log({metas})
+  console.log({metas})
   
   return (
     <PageTransition allowScroll={false}>
