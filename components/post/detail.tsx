@@ -29,7 +29,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
             //Old pattern with api
             fetch(`/api/post/${post?.id}`, {
                 method: 'POST',
-                body: JSON.stringify({contentText: text, author: author, id: post?.id ? post.id : 0, 
+                body: JSON.stringify({content: text, author: author, id: post?.id ? post.id : 0, 
                     insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                     updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                     title: title}),
@@ -48,7 +48,8 @@ function PostDetail({post, onSave}: PostDetailProps) {
                 id: 0, 
                 insertDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
                 updateDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), 
-                title: title
+                title: title,
+                author: author
             })
         }
     }

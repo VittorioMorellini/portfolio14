@@ -6,8 +6,9 @@ export class Post {
     redactorId: number;
     insertDate: string;
     updateDate: string;
+    author: string | null;
 
-    constructor(id: number, content: string, date: string, redactorId: number, title: string) {
+    constructor(id: number, content: string, date: string, redactorId: number, title: string, author: string) {
         //this.UserId = userId;
         this.id = id;
         this.content = content;
@@ -15,6 +16,7 @@ export class Post {
         this.insertDate = date;
         this.updateDate = date;
         this.title = title
+        this.author = author
     }    
 }
 

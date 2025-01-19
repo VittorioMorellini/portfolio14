@@ -12,16 +12,23 @@ const sql = require("mssql")
 
 export async function addPost(post: Post) {
     console.log('I am in server action')
-    // const newPost = await prisma.post.create({
-    //   data: {
-    //       Author: post.author,
-    //       ContentText: post.contentText,
-    //       InsertDate: parseISO(post.insertDate),
-    //       UpdateDate: parseISO(post.updateDate),
-    //       Title: post.title,
-    //       //Id: res.id
-    //   }
-    // })
+    //Insert new post
+    let pool = await sql.connect(dbconfig)
+    pool.request().input('content', sql.NVarChar, post.content)
+        .input('author', sql.NVarChar, post.author)
+        .input('title', sql.NVarChar, post.title)
+        .query(`Insert into Post (content, author, title) values (@content, @author, @title)`
+    )
+    .then(function(result: Post)
+    {
+        //do whatever you want with the results
+        console.log(result)
+    })
+    .catch(function(error: Error)
+    {
+        //do whatever when you get an error
+        console.log(error)
+    })
     revalidatePath('/post')
     redirect('/post')
     // return newPost;
