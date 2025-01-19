@@ -1,4 +1,3 @@
-import LoginForm from "@/components/client/loginForm";
  
 export default function LoginPage() {
   return (
@@ -9,7 +8,6 @@ export default function LoginPage() {
             Enter to the portfolio
           </div>
         </div>
-        {/* <LoginForm /> */}
       </div>
     </main>
   );

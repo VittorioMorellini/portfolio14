@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { categories } from '@/public/data/category';
 import Image from 'next/image';
 import { PowerIcon, UserIcon, IdentificationIcon } from '@heroicons/react/24/outline';
-import { getServerSession } from 'next-auth';
-import { options } from '@/app/api/auth/[...nextauth]/options';
+//import { getServerSession } from 'next-auth';
+//import { options } from '@/app/api/auth/[...nextauth]/options';
 
 async function DesktopNavBar() {
     
-    const session = await getServerSession(options)
-    console.log({session})
+    //const session = await getServerSession(options)
+    //console.log({session})
     return (
         <>
             <nav className="py-2.5 bg-gradient-to-tr from-cyan-100 to-cyan-500 pr-2 pl-2">
@@ -57,7 +57,7 @@ async function DesktopNavBar() {
                                 </div>
                             </li>
                         </ul>
-                        {session ? (
+                        {/*session ? (
                             <ul className='flex pt-4'>
                                 <li>
                                     <div className="flex pr-4 pl-3 text-black">
@@ -87,7 +87,7 @@ async function DesktopNavBar() {
                                     </Link>
                                 </li>
                             </ul>
-                        )}
+                        )*/}
                     </div>
                 </div>
             </nav>

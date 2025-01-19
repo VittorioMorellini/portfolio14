@@ -34,5 +34,5 @@ export default async function Contacts() {
         </div>
       </Container>
     </PageTransition>
-  );
+ );
 }

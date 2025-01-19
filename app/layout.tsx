@@ -4,7 +4,7 @@ import SEO from '@/components/SEO'
 import '../styles/globals.css'
 import { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
-import AuthProvider from '@/components/provider/authProvider'
+//import AuthProvider from '@/components/provider/authProvider'
 
 export const metadata: Metadata = {
   title: 'Vittorio Morellini',
@@ -26,7 +26,6 @@ export default function RootLayout({
     <>
       <html lang="en">
         <SEO />
-        <AuthProvider>
           <body>            
             <div className='h-full'>
               <NavBar show={showMobileNav} />
@@ -41,7 +40,6 @@ export default function RootLayout({
               </footer>
             </div>
           </body>
-        </AuthProvider>
       </html>
     </>
   )

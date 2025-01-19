@@ -14,22 +14,22 @@ function PageTransition({ children, allowScroll, ...rest }: PageTransitionProps,
 	
 	return (
 		<>
-		{allowScroll && 
+			{allowScroll && 
+				<motion.div
+					className='fixed top-0 left-0 right-0 h-2.5 bg-gradient-to-tr from-blue-200 to-blue-600 origin-[0%]'
+					style={{ scaleX: scrollYProgress }} 
+				/>
+			}
 			<motion.div
-				className='fixed top-0 left-0 right-0 h-2.5 bg-gradient-to-tr from-blue-200 to-blue-600 origin-[0%]'
-				style={{ scaleX: scrollYProgress }} 
-			/>
-		}
-		<motion.div
-			ref={ref}
-			initial={onTheRight}
-			animate={inTheCenter}
-			exit={onTheLeft}
-			transition={transition}
-			{...rest}
-		>
-			{children}
-		</motion.div>
+				ref={ref}
+				initial={onTheRight}
+				animate={inTheCenter}
+				exit={onTheLeft}
+				transition={transition}
+				{...rest}
+			>
+				{children}
+			</motion.div>
 		</>
 	)
 }
