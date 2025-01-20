@@ -1,14 +1,10 @@
-
 import { Post } from "../../models/post";
 import { Container } from "@/app/(components)/container";
 import PostItem from "@/components/post/item";
-import Link from "next/link";
 import { getAllPostBySql } from "@/lib/postSupport";
 import PageTransition from "@/components/pageTransition";
 import { Add } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-
-//export const revalidate = 0
 
 async function Page() {
   //for confirm delete

@@ -2,10 +2,10 @@
 import React, { forwardRef, useMemo } from 'react'
 import { motion, HTMLMotionProps, useScroll } from 'framer-motion'
 
-type PageTransitionProps = HTMLMotionProps<'div'> & { allowScroll?: boolean}
+type PageTransitionProps = HTMLMotionProps<'div'> & { allowScroll?: boolean, ref?: React.Ref<HTMLDivElement>}
 //type PageTransitionRef = React.ForwardedRef<HTMLDivElement>
 
-function PageTransition({ children, allowScroll, ...rest }: PageTransitionProps, ref: React.ForwardedRef<HTMLDivElement>) {
+function PageTransition({ children, allowScroll, ref, ...rest }: PageTransitionProps) {
 	const onTheRight = { x: '1920px' }
 	const inTheCenter = { x: 0 }
 	const onTheLeft = { x: '-1920px' }
@@ -34,4 +34,5 @@ function PageTransition({ children, allowScroll, ...rest }: PageTransitionProps,
 	)
 }
 
-export default forwardRef(PageTransition)
+//export default forwardRef(PageTransition)
+export default PageTransition

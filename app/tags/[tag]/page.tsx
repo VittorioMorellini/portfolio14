@@ -7,7 +7,6 @@ export const revalidate = 86400
 type Props = {
     params: Promise<{tag: string}>
 }
-
 export async function generateStaticParams() {
     const articles = await getArticlesMeta() //deduped!
 
@@ -17,14 +16,12 @@ export async function generateStaticParams() {
 
     return Array.from(tags).map((tag) => ({ tag }))
 }
-
 export async function generateMetadata({ params }: Props) {
     const tag = (await params).tag
     return {
         title: `Posts about ${tag}`
     }
 }
-
 export default async function TagPostList({ params }: Props) {
     const tag = (await params).tag
     const articles = await getArticlesMeta() //deduped!

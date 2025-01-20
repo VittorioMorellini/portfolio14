@@ -1,14 +1,33 @@
 import Footer from '@/app/(components)/footer'
 import { NavBar } from '@/components/navbar'
-import SEO from '@/components/SEO'
 import '../styles/globals.css'
-import { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
+import { Metadata } from 'next'
 //import AuthProvider from '@/components/provider/authProvider'
 
 export const metadata: Metadata = {
   title: 'Vittorio Morellini',
   description: 'Developed by Vittorio Morellini',
+  openGraph: {
+    type: "website",
+    locale: "it_IT",
+    url: "https://portfolio-vittoriomorellini.vercel.app",
+    siteName: "Personal site",
+    images: [
+        {
+            url: "",
+            alt: "",
+            height: 1920,
+            width: 1080,
+            type: "image/png",
+        },
+    ],
+  },
+  twitter: {
+      card: "summary",
+      site: "",
+      title: "Portfolio Vittorio Morellini",
+  }        
 }
 
 export default function RootLayout({
@@ -25,21 +44,20 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <SEO />
-          <body>            
-            <div className='h-full'>
-              <NavBar show={showMobileNav} />
-              <div className="flex pb-8 pt-8 h-[calc(100%-160px)]">
-                  <Toaster position='top-center'/>
-                  <div className="w-full mx-4"> 
-                      {children}
-                  </div>
-              </div>
-              <footer className="flex bg-gradient-to-tr from-cyan-100 to-cyan-500 items-center justify-center w-full h-20">
-                <Footer />
-              </footer>
+        <body>            
+          <div className='h-full'>
+            <NavBar show={showMobileNav} />
+            <div className="flex pb-8 pt-8 h-[calc(100%-160px)]">
+                <Toaster position='top-center'/>
+                <div className="w-full mx-4"> 
+                    {children}
+                </div>
             </div>
-          </body>
+            <footer className="flex bg-gradient-to-tr from-cyan-100 to-cyan-500 items-center justify-center w-full h-20">
+              <Footer />
+            </footer>
+          </div>
+        </body>
       </html>
     </>
   )

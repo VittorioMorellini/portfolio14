@@ -4,7 +4,6 @@ import Link from "next/link";
 import PageTransition from "@/components/pageTransition";
 
 export default async function Contacts() {
-  
   return (
     <PageTransition allowScroll={false}>
       <Container>

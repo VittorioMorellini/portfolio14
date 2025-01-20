@@ -3,22 +3,6 @@ import ListItem from "@/app/(components)/article/ListItem"
 import Link from "next/link"
 
 export const revalidate = 86400
-// export async function generateStaticParams() {
-//     const artiles = await getArticlesMeta() //deduped!
-
-//     if (!artiles) return []
-
-//     const tags = new Set(artiles.map(article => article.tags).flat())
-
-//     return Array.from(tags).map((tag) => ({ tag }))
-// }
-
-// export function generateMetadata({ params: { tag } }: Props) {
-
-//     return {
-//         title: `Articles about ${tag}`
-//     }
-// }
 type Props = {
     params: Promise<{tag: string}>
 }
