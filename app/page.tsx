@@ -35,8 +35,8 @@ function Home() {
                   <br /><br />
                   I am currently working as a <b>Software Engineer</b>&nbsp; 
                   in two main ecosystem: <br/>
-                  React.js & Next.js (Typescript) on Frontend<br />
-                  dotnet (C#) on Backend <br />
+                  <li>React.js & Next.js (Typescript) on Frontend<br /></li>
+                  <li>dotnet (C#) on Backend <br /></li>
               </p>            
               <Code />
             </div>
