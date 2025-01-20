@@ -23,7 +23,7 @@ function Home() {
                   I am not so young, unfortunately, I am a full stack developer because I don&apos;t want to leave nor backend neither frontend<br />
                   I have worked as a software engineer for more than
                   twenty years in product and consultancy companies.<br />
-                  I have the determination to be a reference as a <b>Senior SDE</b> on the Web<br />
+                  I have the determination and the ambition to grow indefinitely on the Web<br />
                   <br />
                   I started at the beginning of new millenium working as a developer in Visual Basic 6.
                   But I have always felt the desire to develop on the Web.<br />
