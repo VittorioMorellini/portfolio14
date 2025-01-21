@@ -61,7 +61,7 @@ function PostDetail({post, onSave}: PostDetailProps) {
             setId(post?.id);
             setTitle(post?.title ? post.title : '')
         }
-    }, [])
+    }, [post])
     
     return (
         <div className='flex relative max-w-full'>

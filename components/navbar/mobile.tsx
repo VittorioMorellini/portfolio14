@@ -47,17 +47,15 @@ interface MobileNavBarProps {
     show: boolean,
     onChangeVisibility?: (open: boolean) => void
 }
-
 export function MobileNavBar({ show, onChangeVisibility }: MobileNavBarProps) {
   //const [open, setOpen] = useState(show);
 
   useEffect(() => {
     onChangeVisibility && onChangeVisibility(show);
-  }, [show]);
+  }, [show, onChangeVisibility]);
 
   useEffect(() => {
     //setOpen(show);
-
     if (show) {
       document.body.classList.add("overflow-hidden");
     } else {

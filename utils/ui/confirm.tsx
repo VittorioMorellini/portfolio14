@@ -4,7 +4,7 @@ import { Button, Typography, Dialog, DialogActions, DialogContent, DialogTitle }
 
 type ConfirmDialogProps = {
     open: boolean;
-    message?: string | JSX.Element;
+    message?: string | React.JSX.Element;
     onCancel: () => void;
     onConfirm: () => void;
 }

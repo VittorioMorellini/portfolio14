@@ -5,7 +5,7 @@ function useConfirm() {
     const [open, setOpen] = useState(false);
     const onCancel = () => { setOpen(false) };
     const onConfirm = useRef<() => void>(() => {});
-    const message = useRef<string | JSX.Element | undefined>('');
+    const message = useRef<string | React.JSX.Element | undefined>('');
 
     return {
         Confirm:
@@ -15,7 +15,7 @@ function useConfirm() {
                 onConfirm={onConfirm.current!}
                 message={message.current}
             />,
-        requestConfirm: (action: () => void, confirmMessage?: string | JSX.Element) => {
+        requestConfirm: (action: () => void, confirmMessage?: string | React.JSX.Element) => {
             setOpen(true);
             message.current = confirmMessage;
             onConfirm.current = () => {
